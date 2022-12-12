@@ -1,3 +1,4 @@
 const registerUser = require('./registerUser');
+const getAllUsers = require('./getAllUsers');
 
-module.exports = { registerUser };
+module.exports = { registerUser, getAllUsers };
