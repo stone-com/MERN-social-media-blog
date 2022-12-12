@@ -5,7 +5,6 @@ const User = require('../../models/User');
 const updateUser = asyncHandler(async (req, res) => {
   // Check to make sure user exists to update
   const user = await User.findById(req.params.id);
-  console.log(body);
   if (!user) {
     res.status(400);
     throw new Error('User not found');

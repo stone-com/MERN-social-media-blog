@@ -15,6 +15,7 @@ app.use(
 );
 
 app.use('/api/users', require('./routes/userRoutes'));
+app.use('/api/posts', require('./routes/postRoutes'));
 
 app.listen(port, () => {
   console.log(`Server listening on: ${port}`);
