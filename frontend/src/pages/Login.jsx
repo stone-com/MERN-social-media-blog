@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
-import { useSelector, useDispatch } from 'react-redux';
-import { register, reset } from '../features/auth/authSlice';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { login } from '../features/auth/authSlice';
+import { Link, Navigate } from 'react-router-dom';
 const Login = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
 
-  const { name, email, password, confirmPassword } = formData;
+  const { email, password } = formData;
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,6 +24,9 @@ const Login = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    dispatch(login(formData));
+    toast.success('Logged In');
+    navigate('/');
   };
 
   return (
@@ -55,7 +60,7 @@ const Login = () => {
             type='submit'
             class='w-full text-center py-3 rounded bg-green-500 text-white hover:bg-green-dark focus:outline-none my-1'
           >
-            Create Account
+            Log In
           </button>
         </form>
 

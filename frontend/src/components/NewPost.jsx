@@ -46,7 +46,6 @@ const NewPost = () => {
       >
         <input
           className='title bg-gray-100 border border-gray-300 p-2 mb-4 outline-none'
-          spellcheck='false'
           placeholder='Title'
           type='text'
           name='title'
@@ -55,7 +54,6 @@ const NewPost = () => {
         />
         <textarea
           className='description bg-gray-100 sec p-3 h-60 border border-gray-300 outline-none'
-          spellcheck='false'
           placeholder='Describe everything about this post here'
           name='body'
           value={body}

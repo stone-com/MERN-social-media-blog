@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { register, reset } from '../features/auth/authSlice';
 import { Link } from 'react-router-dom';
@@ -13,6 +14,7 @@ const SignUp = () => {
 
   const { name, email, password, confirmPassword } = formData;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,6 +37,7 @@ const SignUp = () => {
       };
       console.log(userData);
       dispatch(register(userData));
+      navigate('/');
     }
   };
 

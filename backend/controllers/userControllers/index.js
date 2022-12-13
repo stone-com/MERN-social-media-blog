@@ -5,4 +5,11 @@ const deleteUser = require('./deleteUser');
 const getUser = require('./getUser');
 const loginUser = require('./loginUser');
 
-module.exports = { registerUser, getAllUsers, updateUser, deleteUser, getUser };
+module.exports = {
+  registerUser,
+  getAllUsers,
+  updateUser,
+  deleteUser,
+  getUser,
+  loginUser,
+};
