@@ -94,7 +94,7 @@ function Header() {
           </div>
         </div>
 
-        {(ref) => (
+        {/* {(ref) => (
           <div className='md:hidden' id='mobile-menu'>
             <div ref={ref} className='px-2 pt-2 pb-3 space-y-1 sm:px-3'>
               <a
@@ -133,7 +133,7 @@ function Header() {
               </a>
             </div>
           </div>
-        )}
+        )} */}
       </nav>
     </div>
   );

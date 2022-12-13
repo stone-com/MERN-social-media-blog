@@ -12,7 +12,7 @@ const NewPost = () => {
   const { title, body } = formData;
   const { user } = useSelector((state) => state.auth);
   const { isLoading, isSuccess, isError, message } = useSelector(
-    (state) => state.auth
+    (state) => state.posts
   );
 
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ const NewPost = () => {
     }
 
     dispatch(reset);
-  }, [isError, isSuccess, message, navigate, dispatch]);
+  }, [user, isError, isSuccess, message, navigate, dispatch]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

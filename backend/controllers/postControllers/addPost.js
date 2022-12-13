@@ -18,7 +18,6 @@ const addPost = asyncHandler(async (req, res) => {
 
   if (post) {
     res.status(200).json({
-      message: 'Post created!',
       _id: post._id,
       user: post.user,
       title: post.title,
