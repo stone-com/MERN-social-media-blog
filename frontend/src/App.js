@@ -5,13 +5,13 @@ import Login from './pages/Login';
 import NewPost from './components/NewPost';
 import Home from './pages/Home';
 import SignUp from './pages/SignUp';
-import Header from './components/Header';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
     <>
       <Router>
-        <Header />
+        <Navbar />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/register' element={<SignUp />} />
