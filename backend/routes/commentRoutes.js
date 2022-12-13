@@ -3,11 +3,13 @@ const router = express.Router();
 const {
   addComment,
   getComments,
-  deleteComment
+  deleteComment,
+  updateComment
 } = require('../controllers/commentControllers');
 
 // Routes for /api/comments
 router.post('/:postId', addComment); //Add a comment
 router.get('/:postId', getComments); //Get all comments for a post
-router.delete('/:postId/:commentId', deleteComment);
+router.put('/:postId/:commentId', updateComment); //Update a comment
+router.delete('/:postId/:commentId', deleteComment); //Delete a comment
 module.exports = router;
