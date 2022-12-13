@@ -2,7 +2,7 @@ const asyncHandler = require('express-async-handler');
 const Post = require('../../models/Post');
 const Comment = require('../../models/Comment');
 
-const deleteUser = asyncHandler(async (req, res) => {
+const deleteComment = asyncHandler(async (req, res) => {
   const { postId, commentId } = req.params;
   // Check to make sure post exists first
   const post = await Post.findById(postId);
@@ -25,4 +25,4 @@ const deleteUser = asyncHandler(async (req, res) => {
   res.status(200).json({ message: 'Comment deleted', deletedComment });
 });
 
-module.exports = deleteUser;
+module.exports = deleteComment;
