@@ -13,4 +13,8 @@ const register = async (userData) => {
 
   return response.data;
 };
-const authService = { register };
+
+const authService = {
+  register,
+};
+export default authService;
