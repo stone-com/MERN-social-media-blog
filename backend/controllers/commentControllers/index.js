@@ -1,3 +1,4 @@
 const addComment = require('./addComment');
+const getComments = require('./getComments');
 
-module.exports = { addComment };
+module.exports = { addComment, getComments };
