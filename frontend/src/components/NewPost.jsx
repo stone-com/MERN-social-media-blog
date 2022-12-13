@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { createPost } from '../features/posts/postSlice';
+import { createPost, reset } from '../features/posts/postSlice';
 
 const NewPost = () => {
   const [formData, setformData] = useState({
@@ -10,11 +10,29 @@ const NewPost = () => {
     body: '',
   });
   const { title, body } = formData;
-  const { user, isLoading, isError, isSuccess } = useSelector(
+  const { user } = useSelector((state) => state.auth);
+  const { isLoading, isSuccess, isError, message } = useSelector(
     (state) => state.auth
   );
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+      navigate('/login');
+    }
+    if (isError) {
+      toast.error(message);
+    }
+
+    if (isSuccess) {
+      navigate('/');
+      toast.success('Post created');
+    }
+
+    dispatch(reset);
+  }, [isError, isSuccess, message, navigate, dispatch]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,9 +48,8 @@ const NewPost = () => {
       ...formData,
       user,
     };
-
     dispatch(createPost(postData));
-    navigate('/');
+    console.log(isSuccess, isError, isLoading);
   };
 
   return (
