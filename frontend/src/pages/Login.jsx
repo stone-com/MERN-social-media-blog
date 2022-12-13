@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from 'react-redux';
 import { register, reset } from '../features/auth/authSlice';
 import { Link } from 'react-router-dom';
-const SignUp = () => {
+const Login = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -45,15 +45,7 @@ const SignUp = () => {
           onSubmit={handleSubmit}
           class='bg-white px-6 py-8 rounded shadow-md text-black w-full'
         >
-          <h1 class='mb-8 text-3xl text-center'>Sign up</h1>
-          <input
-            type='text'
-            class='block border border-grey-light w-full p-3 rounded mb-4'
-            name='name'
-            placeholder='Full Name'
-            value={name}
-            onChange={handleChange}
-          />
+          <h1 class='mb-8 text-3xl text-center'>Log In</h1>
 
           <input
             type='email'
@@ -72,14 +64,6 @@ const SignUp = () => {
             value={password}
             onChange={handleChange}
           />
-          <input
-            type='password'
-            class='block border border-grey-light w-full p-3 rounded mb-4'
-            name='confirmPassword'
-            placeholder='Confirm Password'
-            value={confirmPassword}
-            onChange={handleChange}
-          />
 
           <button
             type='submit'
@@ -90,19 +74,11 @@ const SignUp = () => {
         </form>
 
         <div class='text-grey-dark mt-6'>
-          <Link to='/login'>
-            Already have an account?
-            <a
-              class='no-underline border-b border-blue text-blue'
-              href='/login/'
-            >
-              Log in
-            </a>
-          </Link>
+          <Link to='/register'>Don't have an account? Sign up!</Link>
         </div>
       </div>
     </div>
   );
 };
 
-export default SignUp;
+export default Login;

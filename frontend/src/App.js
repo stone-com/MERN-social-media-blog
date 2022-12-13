@@ -1,12 +1,20 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
-import Test from './components/Test';
+import Login from './pages/Login';
+import NewPost from './components/NewPost';
 import SignUp from './pages/SignUp';
 
 function App() {
   return (
-    <div className='App'>
-      <SignUp />
-    </div>
+    <>
+      <Router>
+        <Routes>
+          <Route path='/register' element={<SignUp />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/newPost' element={<NewPost />} />
+        </Routes>
+      </Router>
+    </>
   );
 }
 
