@@ -5,10 +5,8 @@ import { register, reset } from '../features/auth/authSlice';
 import { Link } from 'react-router-dom';
 const Login = () => {
   const [formData, setFormData] = useState({
-    name: '',
     email: '',
     password: '',
-    confirmPassword: '',
   });
 
   const { name, email, password, confirmPassword } = formData;
@@ -24,18 +22,6 @@ const Login = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    if (password !== confirmPassword) {
-      toast.error('Passwords must match!');
-    } else {
-      const userData = {
-        name,
-        email,
-        password,
-      };
-      console.log(userData);
-      dispatch(register(userData));
-    }
   };
 
   return (

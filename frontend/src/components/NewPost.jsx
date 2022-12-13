@@ -32,6 +32,7 @@ const NewPost = () => {
     };
 
     dispatch(createPost(postData));
+    navigate('/');
   };
 
   return (
