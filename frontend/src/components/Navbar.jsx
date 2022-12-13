@@ -1,10 +1,24 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../features/auth/authSlice';
 
 export default function NavBar() {
   const [navbar, setNavbar] = useState(false);
   // Use state to track the active link
   const [activeLink, setActiveLink] = useState('/explore');
+
+  const location = useLocation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setActiveLink(location.pathname);
+  }, [location]);
+
+  const onClick = () => {
+    console.log('click');
+    dispatch(logout());
+  };
 
   return (
     <nav className='w-full bg-white shadow'>
@@ -87,6 +101,13 @@ export default function NavBar() {
                 }`}
               >
                 <Link to='/newPost'>New Post</Link>
+              </li>
+              <li
+                className={`text-gray-600 hover:text-blue-600 ${
+                  activeLink === '/newPost' ? 'active' : ''
+                }`}
+              >
+                <button onClick={onClick}>Log Out</button>
               </li>
             </ul>
           </div>
