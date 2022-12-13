@@ -2,7 +2,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import postService from './postService';
 
 const initialState = {
-  posts: [],
+  allPosts: [],
+  followingPosts: [],
   isError: false,
   isLoading: false,
   isSuccess: false,
@@ -26,3 +27,32 @@ export const createPost = createAsyncThunk(
     }
   }
 );
+
+const postSlice = createSlice({
+  name: 'post',
+  initialState,
+  reducers: {
+    reset: (state) => initialState,
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(createPost.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(createPost.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.allPosts.push(action.payload);
+      })
+      .addCase(createPost.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = false;
+        state.isError = true;
+        state.message(action.payload);
+      });
+  },
+});
+
+export const { reset } = postSlice.actions;
+
+export default postSlice.reducer;

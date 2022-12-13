@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { createPost } from '../features/posts/postSlice';
 
 const NewPost = () => {
   const [formData, setformData] = useState({
@@ -25,6 +26,12 @@ const NewPost = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const postData = {
+      ...formData,
+      user,
+    };
+
+    dispatch(createPost(postData));
   };
 
   return (
@@ -60,12 +67,15 @@ const NewPost = () => {
           </div>
         </div>
         <div className='buttons flex'>
-          <div className='btn border border-gray-300 p-1 px-4 font-semibold cursor-pointer text-gray-500 ml-auto'>
+          <button className='btn border border-gray-300 p-1 px-4 font-semibold cursor-pointer text-gray-500 ml-auto'>
             Cancel
-          </div>
-          <div className='btn border border-indigo-500 p-1 px-4 font-semibold cursor-pointer text-gray-200 ml-2 bg-indigo-500'>
+          </button>
+          <button
+            type='submit'
+            className='btn border border-indigo-500 p-1 px-4 font-semibold cursor-pointer text-gray-200 ml-2 bg-indigo-500'
+          >
             Post
-          </div>
+          </button>
         </div>
       </form>
     </>
