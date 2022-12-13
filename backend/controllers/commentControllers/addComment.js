@@ -3,8 +3,8 @@ const Comment = require('../../models/Comment');
 const Post = require('../../models/Post');
 
 const addComment = asyncHandler(async (req, res) => {
-  const { userId, body, postId } = req.body;
-
+  const { userId, body } = req.body;
+  const { postId } = req.params;
   if (!userId || !body || !postId) {
     res.status(400);
     throw new Error('Please add all fields');
