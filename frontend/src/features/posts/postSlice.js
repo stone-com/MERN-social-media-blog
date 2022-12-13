@@ -32,7 +32,12 @@ const postSlice = createSlice({
   name: 'post',
   initialState,
   reducers: {
-    reset: (state) => initialState,
+    reset: (state) => {
+      state.isError = false;
+      state.isLoading = false;
+      state.isSuccess = false;
+      state.message = '';
+    },
   },
   extraReducers: (builder) => {
     builder

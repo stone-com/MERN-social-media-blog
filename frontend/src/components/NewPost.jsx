@@ -11,9 +11,6 @@ const NewPost = () => {
   });
   const { title, body } = formData;
   const { user } = useSelector((state) => state.auth);
-  const { isLoading, isSuccess, isError, message } = useSelector(
-    (state) => state.posts
-  );
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -22,17 +19,7 @@ const NewPost = () => {
     if (!user) {
       navigate('/login');
     }
-    if (isError) {
-      toast.error(message);
-    }
-
-    if (isSuccess) {
-      navigate('/');
-      toast.success('Post created');
-    }
-
-    dispatch(reset);
-  }, [user, isError, isSuccess, message, navigate, dispatch]);
+  }, [user, navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -49,7 +36,8 @@ const NewPost = () => {
       user,
     };
     dispatch(createPost(postData));
-    console.log(isSuccess, isError, isLoading);
+    setformData({ title: '', body: '' });
+    navigate('/');
   };
 
   return (
