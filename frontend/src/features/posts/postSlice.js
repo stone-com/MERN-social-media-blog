@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, updateArray } from '@reduxjs/toolkit';
 import postService from './postService';
 
 const initialState = {
@@ -37,6 +37,24 @@ export const getPosts = createAsyncThunk(
       const token = thunkAPI.getState().auth.user.token;
 
       return postService.getPosts(token);
+    } catch (error) {
+      const message =
+        error.response?.data?.message || error.message || error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+// Edit a post
+export const editPost = createAsyncThunk(
+  'posts/edit',
+  async (postData, thunkAPI) => {
+    try {
+      // get auth token from thunkAPI getState method
+      const token = thunkAPI.getState().auth.user.token;
+
+      return postService.editPost(postData, token);
     } catch (error) {
       const message =
         error.response?.data?.message || error.message || error.toString();
@@ -101,6 +119,23 @@ const postSlice = createSlice({
         state.allPosts = action.payload;
       })
       .addCase(getPosts.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      // Edit a post
+      .addCase(editPost.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(editPost.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.allPosts = state.allPosts.map((post) =>
+          post._id === action.payload._id ? action.payload : post
+        );
+      })
+      .addCase(editPost.rejected, (state, action) => {
         state.isLoading = false;
         state.isSuccess = false;
         state.isError = true;

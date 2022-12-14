@@ -1,20 +1,22 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FaTrash, FaPen, FaSave } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 import { GiCancel } from 'react-icons/gi';
-import { deletePost } from '../features/posts/postSlice';
+import { deletePost, editPost } from '../features/posts/postSlice';
 
 const Post = ({ title, body, createdAt, comments, name, authorId, id }) => {
   const [isEditable, setIsEditable] = useState(false);
-  const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
 
   const [editState, setEditState] = useState({
     editTitle: title,
     editBody: body,
   });
-
   const { editTitle, editBody } = editState;
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { user } = useSelector((state) => state.auth);
 
   // Format the date
   let date = new Date(createdAt);
@@ -26,6 +28,20 @@ const Post = ({ title, body, createdAt, comments, name, authorId, id }) => {
 
   const onChange = (e) => {
     setEditState((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const onEditSubmit = (e) => {
+    const formData = {
+      user: authorId,
+      title: editTitle,
+      body: editBody,
+      id: id,
+    };
+    console.log(formData);
+
+    dispatch(editPost(formData));
+    setIsEditable(false);
+    setEditState({});
   };
 
   return (
@@ -46,6 +62,7 @@ const Post = ({ title, body, createdAt, comments, name, authorId, id }) => {
             </span>
           </div>
         </div>
+        {/* Render either the post title or an input field depending on isEditable State */}
         {!isEditable ? (
           <p
             suppressContentEditableWarning={true}
@@ -65,6 +82,7 @@ const Post = ({ title, body, createdAt, comments, name, authorId, id }) => {
           ></input>
         )}
       </div>
+      {/* Render either the post body or an input field depending on isEditable State */}
       {!isEditable ? (
         <p className='leading-snug text-gray-800 dark:text-gray-100 md:leading-normal'>
           {body}
@@ -108,11 +126,11 @@ const Post = ({ title, body, createdAt, comments, name, authorId, id }) => {
                 <GiCancel />
               </button>
               <button className='mx-1 bg-green-600 btn'>
-                <FaSave />
+                <FaSave onClick={onEditSubmit} />
               </button>
             </>
           )}
-          {user && user._id === authorId && !isEditable && (
+          {user && user._id === authorId && (
             <>
               <button
                 className='mx-1 bg-blue-500 btn'

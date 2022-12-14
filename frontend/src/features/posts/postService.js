@@ -23,6 +23,18 @@ const getPosts = async (token) => {
   return response.data;
 };
 
+// Edit a post
+const editPost = async (postData, token) => {
+  console.log(postData.id);
+  const config = {
+    headers: {
+      Authorization: 'Bearer ' + token,
+    },
+  };
+  const response = await axios.put(API_URL + postData.id, postData, config);
+  return response.data;
+};
+
 // Delete a post
 const deletePost = async (postId, token) => {
   const config = {
@@ -31,7 +43,7 @@ const deletePost = async (postId, token) => {
     },
   };
   const response = await axios.delete(API_URL + postId, config);
-  console.log(response);
+
   return response.data;
 };
 
@@ -39,6 +51,7 @@ const postService = {
   createPost,
   getPosts,
   deletePost,
+  editPost,
 };
 
 export default postService;
