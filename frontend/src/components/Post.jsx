@@ -1,10 +1,20 @@
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { FaTrash, FaPen } from 'react-icons/fa';
+import { FaTrash, FaPen, FaSave } from 'react-icons/fa';
+import { GiCancel } from 'react-icons/gi';
 import { deletePost } from '../features/posts/postSlice';
 
 const Post = ({ title, body, createdAt, comments, name, authorId, id }) => {
+  const [isEditable, setIsEditable] = useState(false);
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
+
+  const [editState, setEditState] = useState({
+    editTitle: title,
+    editBody: body,
+  });
+
+  const { editTitle, editBody } = editState;
 
   // Format the date
   let date = new Date(createdAt);
@@ -13,6 +23,10 @@ const Post = ({ title, body, createdAt, comments, name, authorId, id }) => {
     day: 'numeric',
     year: 'numeric',
   });
+
+  const onChange = (e) => {
+    setEditState((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
 
   return (
     <div className='max-w-5xl px-5 py-4 my-5 bg-white rounded-lg shadow dark:bg-gray-800'>
@@ -32,11 +46,39 @@ const Post = ({ title, body, createdAt, comments, name, authorId, id }) => {
             </span>
           </div>
         </div>
-        <p className='flex justify-start col-span-2 px-6 text-2xl text-white'>{title}</p>
+        {!isEditable ? (
+          <p
+            suppressContentEditableWarning={true}
+            className='flex justify-start col-span-2 px-6 text-2xl text-white'
+          >
+            {title}
+          </p>
+        ) : (
+          <input
+            type='text'
+            name='editTitle'
+            class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 '
+            placeholder={title}
+            required
+            value={editTitle}
+            onChange={onChange}
+          ></input>
+        )}
       </div>
-      <p className='leading-snug text-gray-800 dark:text-gray-100 md:leading-normal'>
-        {body}
-      </p>
+      {!isEditable ? (
+        <p className='leading-snug text-gray-800 dark:text-gray-100 md:leading-normal'>
+          {body}
+        </p>
+      ) : (
+        <input
+          type='text'
+          name='editBody'
+          class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  mt-5'
+          placeholder={body}
+          value={editBody}
+          onChange={onChange}
+        ></input>
+      )}
       <div className='flex items-center justify-between mt-5'>
         <div>
           <div className='flex '>
@@ -49,20 +91,52 @@ const Post = ({ title, body, createdAt, comments, name, authorId, id }) => {
             {comments.length} comments
           </div>
         </div>
-        {user && user._id === authorId && (
-          <div className='flex justify-end'>
-            <button className='mr-2 bg-blue-500 btn'>
-              <FaPen />
-            </button>
-            <button
-              className='bg-red-600 btn'
-              onClick={() => dispatch(deletePost(id))}
-            >
-              <FaTrash />
-            </button>
-          </div>
-        )}
+        <div className='flex justify-end'>
+          {isEditable && (
+            <>
+              <button
+                className='mx-1 bg-red-500 btn'
+                onClick={() => {
+                  setIsEditable(!isEditable);
+                  setEditState((prev) => ({
+                    ...prev,
+                    editBody: body,
+                    editTitle: title,
+                  }));
+                }}
+              >
+                <GiCancel />
+              </button>
+              <button className='mx-1 bg-green-600 btn'>
+                <FaSave />
+              </button>
+            </>
+          )}
+          {user && user._id === authorId && !isEditable && (
+            <>
+              <button
+                className='mx-1 bg-blue-500 btn'
+                onClick={() => {
+                  setIsEditable(!isEditable);
+                }}
+              >
+                <FaPen />
+              </button>
+              <button
+                className='mx-1 bg-red-600 btn'
+                onClick={() => dispatch(deletePost(id))}
+              >
+                <FaTrash />
+              </button>
+            </>
+          )}
+        </div>
       </div>
+      {isEditable && (
+        <div className='flex justify-center text-white'>
+          Content is now editable
+        </div>
+      )}
     </div>
   );
 };

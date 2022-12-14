@@ -21,11 +21,12 @@ const Explore = () => {
       }
     }
     dispatch(getPosts());
-  }, [user, isError, dispatch, navigate, message]);
+  },[]);
 
 //   if (isLoading) {
 //     return <h1>Loading...</h1>;
 //   }
+
   return (
     <div className='container items-center justify-center max-w-5xl grid-cols-1 px-4 m-auto mt-8'>
       {allPosts &&
