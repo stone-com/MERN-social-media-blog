@@ -7,9 +7,7 @@ import Post from '../components/Post';
 const Explore = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { allPosts, isError, isLoading, message } = useSelector(
-    (state) => state.posts
-  );
+  const { allPosts, isError, message } = useSelector((state) => state.posts);
   const user = useSelector((state) => state.auth.user);
 
   useEffect(() => {

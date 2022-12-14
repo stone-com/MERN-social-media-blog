@@ -4,6 +4,7 @@ import { FaTrash, FaPen, FaSave } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { GiCancel } from 'react-icons/gi';
 import { deletePost, editPost } from '../features/posts/postSlice';
+import CommentDisplay from './CommentDisplay';
 
 const Post = ({ title, body, createdAt, comments, author, id }) => {
   const [isEditable, setIsEditable] = useState(false);
@@ -13,7 +14,6 @@ const Post = ({ title, body, createdAt, comments, author, id }) => {
     editBody: body,
   });
   const { editTitle, editBody } = editState;
-
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -62,10 +62,7 @@ const Post = ({ title, body, createdAt, comments, author, id }) => {
         </div>
         {/* Render either the post title or an input field depending on isEditable State */}
         {!isEditable ? (
-          <p
-            suppressContentEditableWarning={true}
-            className='flex justify-start col-span-2 px-6 text-2xl text-white'
-          >
+          <p className='flex justify-start col-span-2 px-6 text-2xl text-white'>
             {title}
           </p>
         ) : (
@@ -108,6 +105,7 @@ const Post = ({ title, body, createdAt, comments, author, id }) => {
           </div>
         </div>
         <div className='flex justify-end'>
+          {/* SHow cancel and save buttons if isEditable set to true */}
           {isEditable && (
             <>
               <button
@@ -128,6 +126,7 @@ const Post = ({ title, body, createdAt, comments, author, id }) => {
               </button>
             </>
           )}
+          {/* Only show edit and delete buttons if logged in user matches userId of the post */}
           {user && user._id === author._id && !isEditable && (
             <>
               <button
@@ -153,6 +152,7 @@ const Post = ({ title, body, createdAt, comments, author, id }) => {
           Content is now editable
         </div>
       )}
+      <CommentDisplay />
     </div>
   );
 };
