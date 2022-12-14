@@ -35,7 +35,8 @@ const Explore = () => {
             <Post
               title={post.title}
               body={post.body}
-              user={post.user}
+              name={post.user.name}
+              userId={post.user._id}
               createdAt={post.createdAt}
               comments={post.comments}
             />
