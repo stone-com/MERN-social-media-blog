@@ -128,7 +128,7 @@ const Post = ({ title, body, createdAt, comments, author, id }) => {
               </button>
             </>
           )}
-          {user && user._id === author._id && (
+          {user && user._id === author._id && !isEditable && (
             <>
               <button
                 className='mx-1 bg-blue-500 btn'
