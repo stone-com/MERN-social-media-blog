@@ -101,7 +101,7 @@ const postSlice = createSlice({
       .addCase(createPost.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.allPosts.push(action.payload);
+        state.allPosts.unshift(action.payload);
       })
       .addCase(createPost.rejected, (state, action) => {
         state.isLoading = false;
@@ -116,7 +116,7 @@ const postSlice = createSlice({
       .addCase(getPosts.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.allPosts = action.payload;
+        state.allPosts = action.payload.reverse();
       })
       .addCase(getPosts.rejected, (state, action) => {
         state.isLoading = false;

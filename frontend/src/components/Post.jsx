@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { GiCancel } from 'react-icons/gi';
 import { deletePost, editPost } from '../features/posts/postSlice';
 
-const Post = ({ title, body, createdAt, comments, name, authorId, id }) => {
+const Post = ({ title, body, createdAt, comments, author, id }) => {
   const [isEditable, setIsEditable] = useState(false);
 
   const [editState, setEditState] = useState({
@@ -14,11 +14,6 @@ const Post = ({ title, body, createdAt, comments, name, authorId, id }) => {
   });
   const { editTitle, editBody } = editState;
 
-  // Add post authorId and name to local State. The post.user data is being lost after post update for some reason, but this seems to fix it.
-  const [author, setAuthor] = useState({
-    name,
-    authorId,
-  });
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -38,12 +33,11 @@ const Post = ({ title, body, createdAt, comments, name, authorId, id }) => {
 
   const onEditSubmit = (e) => {
     const formData = {
-      user: authorId,
       title: editTitle,
       body: editBody,
       id: id,
     };
-
+    console.log(formData);
     dispatch(editPost(formData));
     setIsEditable(false);
   };
@@ -134,7 +128,7 @@ const Post = ({ title, body, createdAt, comments, name, authorId, id }) => {
               </button>
             </>
           )}
-          {user && user._id === author.authorId && (
+          {user && user._id === author._id && (
             <>
               <button
                 className='mx-1 bg-blue-500 btn'

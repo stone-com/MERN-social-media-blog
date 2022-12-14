@@ -21,11 +21,11 @@ const Explore = () => {
       }
     }
     dispatch(getPosts());
-  },[]);
+  }, []);
 
-//   if (isLoading) {
-//     return <h1>Loading...</h1>;
-//   }
+  //   if (isLoading) {
+  //     return <h1>Loading...</h1>;
+  //   }
 
   return (
     <div className='container items-center justify-center max-w-5xl grid-cols-1 px-4 m-auto mt-8'>
@@ -35,8 +35,7 @@ const Explore = () => {
             <Post
               title={post.title}
               body={post.body}
-              name={post.user.name}
-              authorId={post.user._id}
+              author={post.user}
               createdAt={post.createdAt}
               comments={post.comments}
               id={post._id}
