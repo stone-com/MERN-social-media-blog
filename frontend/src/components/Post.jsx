@@ -156,7 +156,7 @@ const Post = ({ title, body, createdAt, comments, author, id }) => {
           Content is now editable
         </div>
       )}
-      {showComments && <CommentDisplay />}
+      {showComments && <CommentDisplay id={id} />}
     </div>
   );
 };

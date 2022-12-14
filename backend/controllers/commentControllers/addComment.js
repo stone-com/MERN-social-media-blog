@@ -16,13 +16,18 @@ const addComment = asyncHandler(async (req, res) => {
     body,
   });
 
+  // Populate the user field so we can return it
+  const commentWithUser = await Comment.findOne({ _id: comment._id }).populate(
+    'user'
+  );
+
   // if comment created successfully, then add the comment to the corresponding post as well
   if (comment) {
     const post = await Post.findById(postId);
     if (post) {
       post.comments.push(comment.id);
       post.save();
-      res.status(200).json(post);
+      res.status(200).json(commentWithUser);
     } else {
       throw new Error('Could not find post to add comment to');
     }

@@ -1,4 +1,14 @@
-const Comment = () => {
+const Comment = ({ comment }) => {
+  const { body, createdAt, user } = comment;
+
+  // Format the date
+  let date = new Date(createdAt);
+  const formattedDate = date.toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  });
+
   return (
     <article className='p-6 mb-6 text-base bg-white rounded-lg dark:bg-gray-900'>
       <footer className='flex items-center justify-between mb-2'>
@@ -9,21 +19,16 @@ const Comment = () => {
               src='https://flowbite.com/docs/images/people/profile-picture-2.jpg'
               alt='Michael Gough'
             />
-            Michael Gough
+            {user.name}
           </p>
           <p className='text-sm text-gray-600 dark:text-gray-400'>
             <time pubdate datetime='2022-02-08' title='February 8th, 2022'>
-              Feb. 8, 2022
+              {formattedDate}
             </time>
           </p>
         </div>
       </footer>
-      <p className='text-gray-500 dark:text-gray-400'>
-        Very straight-to-point article. Really worth time reading. Thank you!
-        But tools are just the instruments for the UX designers. The knowledge
-        of the design tools are as important as the creation of the design
-        strategy.
-      </p>
+      <p className='text-gray-500 dark:text-gray-400'>{body}</p>
     </article>
   );
 };

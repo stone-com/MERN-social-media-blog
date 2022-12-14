@@ -11,7 +11,7 @@ const getComments = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error('Post not found, cannot get comments');
   }
-  const comments = await Comment.find({ post: postId });
+  const comments = await Comment.find({ post: postId }).populate('user');
 
   res.status(200).json(comments);
 });
