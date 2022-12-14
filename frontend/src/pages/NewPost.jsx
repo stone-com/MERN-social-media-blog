@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import { createPost, reset } from '../features/posts/postSlice';
 
 const NewPost = () => {
@@ -37,20 +36,20 @@ const NewPost = () => {
     };
     dispatch(createPost(postData));
     setformData({ title: '', body: '' });
-    navigate('/');
+    navigate('/explore');
   };
 
   return (
     <>
-      <div className='heading text-center font-bold text-2xl m-5 text-gray-800'>
+      <div className='m-5 text-2xl font-bold text-center text-gray-800 heading'>
         New Post
       </div>
       <form
         onSubmit={handleSubmit}
-        className='editor mx-auto w-10/12 flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl'
+        className='flex flex-col w-10/12 max-w-2xl p-4 mx-auto text-gray-800 border border-gray-300 shadow-lg editor'
       >
         <input
-          className='title bg-gray-100 border border-gray-300 p-2 mb-4 outline-none'
+          className='p-2 mb-4 bg-gray-100 border border-gray-300 outline-none title'
           placeholder='Title'
           type='text'
           name='title'
@@ -58,25 +57,25 @@ const NewPost = () => {
           onChange={handleChange}
         />
         <textarea
-          className='description bg-gray-100 sec p-3 h-60 border border-gray-300 outline-none'
+          className='p-3 bg-gray-100 border border-gray-300 outline-none description sec h-60'
           placeholder='Describe everything about this post here'
           name='body'
           value={body}
           onChange={handleChange}
         ></textarea>
 
-        <div className='icons flex text-gray-500 m-2'>
-          <div className='count ml-auto text-gray-400 text-xs font-semibold'>
+        <div className='flex m-2 text-gray-500 icons'>
+          <div className='ml-auto text-xs font-semibold text-gray-400 count'>
             {body.length} / 1000
           </div>
         </div>
-        <div className='buttons flex'>
-          <button className='btn border border-gray-300 p-1 px-4 font-semibold cursor-pointer text-gray-500 ml-auto'>
+        <div className='flex buttons'>
+          <button className='p-1 px-4 ml-auto font-semibold text-gray-500 border border-gray-300 cursor-pointer btn'>
             Cancel
           </button>
           <button
             type='submit'
-            className='btn border border-indigo-500 p-1 px-4 font-semibold cursor-pointer text-gray-200 ml-2 bg-indigo-500'
+            className='p-1 px-4 ml-2 font-semibold text-gray-200 bg-indigo-500 border border-indigo-500 cursor-pointer btn'
           >
             Post
           </button>

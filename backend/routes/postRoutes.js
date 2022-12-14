@@ -12,7 +12,7 @@ const {
 
 // Routes for /api/posts
 // All routes for posts are protected from 'protect' middleware function
-router.get('/', protect, getAllPosts); //Get all posts
+router.get('/',  getAllPosts); //Get all posts
 router.get('/user/:userId', protect, getPostsForUser); //Get all posts from specific user
 router.post('/', protect, addPost); //Create a new post
 router.put('/:id', protect, updatePost); //Update a post

@@ -28,6 +28,23 @@ export const createPost = createAsyncThunk(
   }
 );
 
+export const getPosts = createAsyncThunk(
+  'posts/getall',
+  async (_, thunkAPI) => {
+    try {
+      // get auth token from thunkAPI getState method
+      const token = thunkAPI.getState().auth.user.token;
+
+      return postService.getPosts(token);
+    } catch (error) {
+      const message =
+        error.response?.data?.message || error.message || error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 const postSlice = createSlice({
   name: 'post',
   initialState,
@@ -41,6 +58,7 @@ const postSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      // Create Post
       .addCase(createPost.pending, (state) => {
         state.isLoading = true;
       })
@@ -54,6 +72,21 @@ const postSlice = createSlice({
         state.isSuccess = false;
         state.isError = true;
         state.message(action.payload);
+      })
+      // Get all posts
+      .addCase(getPosts.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getPosts.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.allPosts = action.payload;
+      })
+      .addCase(getPosts.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = false;
+        state.isError = true;
+        state.message = action.payload;
       });
   },
 });

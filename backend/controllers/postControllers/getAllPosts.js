@@ -2,7 +2,7 @@ const asyncHandler = require('express-async-handler');
 const Post = require('../../models/Post');
 
 const getAllPosts = asyncHandler(async (req, res) => {
-  const posts = await Post.find({});
+  const posts = await Post.find({}).populate('user');
 
   if (!posts) {
     res.status(400);

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../features/auth/authSlice';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logout, reset } from '../features/auth/authSlice';
 
 export default function NavBar() {
   const [navbar, setNavbar] = useState(false);
@@ -10,14 +10,17 @@ export default function NavBar() {
 
   const location = useLocation();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setActiveLink(location.pathname);
   }, [location]);
 
-  const onClick = () => {
+  const onLogout = () => {
     console.log('click');
     dispatch(logout());
+    dispatch(reset());
+    navigate('/login');
   };
 
   return (
@@ -102,12 +105,8 @@ export default function NavBar() {
               >
                 <Link to='/newPost'>New Post</Link>
               </li>
-              <li
-                className={`text-gray-600 hover:text-blue-600 ${
-                  activeLink === '/newPost' ? 'active' : ''
-                }`}
-              >
-                <button onClick={onClick}>Log Out</button>
+              <li className={`text-gray-600 hover:text-blue-600`}>
+                <button onClick={onLogout}>Log Out</button>
               </li>
             </ul>
           </div>
