@@ -17,7 +17,6 @@ export default function NavBar() {
   }, [location]);
 
   const onLogout = () => {
-    console.log('click');
     dispatch(logout());
     dispatch(reset());
     navigate('/login');

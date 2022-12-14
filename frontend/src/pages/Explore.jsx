@@ -2,6 +2,7 @@ import { getPosts } from '../features/posts/postSlice';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import Post from '../components/Post';
 
 const Explore = () => {
   const dispatch = useDispatch();
@@ -27,17 +28,19 @@ const Explore = () => {
     return <h1>Loading...</h1>;
   }
   return (
-    <div className=''>
-      <div className='container grid grid-cols-1 px-4 m-auto mt-8 '>
-        {allPosts &&
-          allPosts.map((post) => (
-            <div key={post._id} className='m-1 bg-green-100'>
-              <h1 className='text-2xl font-bold'>Post title: {post.title}</h1>
-              <h3 className='text-xl'>{post.body}</h3>
-              <h3 className='text-lg'>{post.user.name}</h3>
-            </div>
-          ))}
-      </div>
+    <div className='container items-center justify-center max-w-5xl grid-cols-1 px-4 m-auto mt-8'>
+      {allPosts &&
+        allPosts.map((post) => (
+          <div key={post._id} className='m-1 bg-green-100 w-100'>
+            <Post
+              title={post.title}
+              body={post.body}
+              user={post.user}
+              createdAt={post.createdAt}
+              comments={post.comments}
+            />
+          </div>
+        ))}
     </div>
   );
 };
