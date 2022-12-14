@@ -14,6 +14,12 @@ const Post = ({ title, body, createdAt, comments, name, authorId, id }) => {
   });
   const { editTitle, editBody } = editState;
 
+  // Add post authorId and name to local State. The post.user data is being lost after post update for some reason, but this seems to fix it.
+  const [author, setAuthor] = useState({
+    name,
+    authorId,
+  });
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
@@ -37,11 +43,9 @@ const Post = ({ title, body, createdAt, comments, name, authorId, id }) => {
       body: editBody,
       id: id,
     };
-    console.log(formData);
 
     dispatch(editPost(formData));
     setIsEditable(false);
-    setEditState({});
   };
 
   return (
@@ -55,7 +59,7 @@ const Post = ({ title, body, createdAt, comments, name, authorId, id }) => {
           />
           <div className='ml-2 mt-0.5'>
             <span className='block text-base font-medium leading-snug text-black dark:text-gray-100'>
-              {name}
+              {author.name}
             </span>
             <span className='block text-sm font-light leading-snug text-gray-500 dark:text-gray-400'>
               {formattedDate}
@@ -130,7 +134,7 @@ const Post = ({ title, body, createdAt, comments, name, authorId, id }) => {
               </button>
             </>
           )}
-          {user && user._id === authorId && (
+          {user && user._id === author.authorId && (
             <>
               <button
                 className='mx-1 bg-blue-500 btn'
