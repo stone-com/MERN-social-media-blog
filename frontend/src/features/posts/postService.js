@@ -20,13 +20,25 @@ const getPosts = async (token) => {
   };
 
   const response = await axios.get(API_URL, config);
-  console.log(response.data);
+  return response.data;
+};
+
+// Delete a post
+const deletePost = async (postId, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await axios.delete(API_URL + postId, config);
+  console.log(response);
   return response.data;
 };
 
 const postService = {
   createPost,
   getPosts,
+  deletePost,
 };
 
 export default postService;

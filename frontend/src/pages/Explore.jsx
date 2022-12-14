@@ -21,12 +21,11 @@ const Explore = () => {
       }
     }
     dispatch(getPosts());
-    console.log(allPosts);
   }, [user, isError, dispatch, navigate, message]);
 
-  if (isLoading) {
-    return <h1>Loading...</h1>;
-  }
+//   if (isLoading) {
+//     return <h1>Loading...</h1>;
+//   }
   return (
     <div className='container items-center justify-center max-w-5xl grid-cols-1 px-4 m-auto mt-8'>
       {allPosts &&
@@ -36,9 +35,10 @@ const Explore = () => {
               title={post.title}
               body={post.body}
               name={post.user.name}
-              userId={post.user._id}
+              authorId={post.user._id}
               createdAt={post.createdAt}
               comments={post.comments}
+              id={post._id}
             />
           </div>
         ))}

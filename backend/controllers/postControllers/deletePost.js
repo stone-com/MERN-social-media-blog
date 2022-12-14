@@ -6,7 +6,7 @@ const deleteUser = asyncHandler(async (req, res) => {
   const post = await Post.findById(req.params.id);
   if (!post) {
     res.status(400);
-    throw new Error('User not found');
+    throw new Error('Post not found');
   }
 
   const deletedPost = await Post.findByIdAndDelete(req.params.id);
