@@ -8,6 +8,7 @@ import CommentDisplay from './CommentDisplay';
 
 const Post = ({ title, body, createdAt, comments, author, id }) => {
   const [isEditable, setIsEditable] = useState(false);
+  const [showComments, setShowComments] = useState(false);
 
   const [editState, setEditState] = useState({
     editTitle: title,
@@ -100,7 +101,10 @@ const Post = ({ title, body, createdAt, comments, author, id }) => {
               8
             </span>
           </div>
-          <div className='ml-1 font-light text-gray-500 dark:text-gray-400'>
+          <div
+            className='ml-1 font-light text-gray-500 dark:text-gray-400 hover:cursor-pointer'
+            onClick={() => setShowComments(!showComments)}
+          >
             {comments.length} comments
           </div>
         </div>
@@ -152,7 +156,7 @@ const Post = ({ title, body, createdAt, comments, author, id }) => {
           Content is now editable
         </div>
       )}
-      <CommentDisplay />
+      {showComments && <CommentDisplay />}
     </div>
   );
 };
