@@ -34,9 +34,30 @@ export const CommentProvider = ({ children }) => {
     }
   };
 
+  // Delete a comment
+  const deleteComment = async (postId, commentId) => {
+    setIsError(false);
+    setIsLoading(true);
+    try {
+      const result = await axios.delete(`/api/comments/${postId}/${commentId}`);
+      const filteredComments = comments.filter(
+        (comment) => comment._id !== commentId
+      );
+      setComments(filteredComments);
+    } catch (error) {
+      setIsError(true);
+    }
+  };
+
   return (
     <CommentContext.Provider
-      value={{ comments, setComments, fetchComments, addComment }}
+      value={{
+        comments,
+        setComments,
+        fetchComments,
+        addComment,
+        deleteComment,
+      }}
     >
       {children}
     </CommentContext.Provider>

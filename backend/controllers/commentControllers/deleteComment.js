@@ -10,7 +10,7 @@ const deleteComment = asyncHandler(async (req, res) => {
   // Check to make sure comment exists
   const comment = await Comment.findById(commentId);
 
-  if (!comment || !post) {
+  if (!comment) {
     res.status(400);
     throw new Error('Comment or post not found');
   }
@@ -22,7 +22,7 @@ const deleteComment = asyncHandler(async (req, res) => {
   post.comments.pull({ _id: commentId });
   post.save();
 
-  res.status(200).json({ message: 'Comment deleted', deletedComment });
+  res.status(200).json({ deletedComment });
 });
 
 module.exports = deleteComment;

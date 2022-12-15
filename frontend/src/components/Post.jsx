@@ -7,7 +7,7 @@ import { deletePost, editPost } from '../features/posts/postSlice';
 import { CommentDisplay } from '../components/CommentDisplay';
 import { CommentProvider } from '../features/comments/commentContext';
 
-const Post = ({ title, body, createdAt, comments, author, id }) => {
+const Post = ({ title, body, createdAt, author, comments, id }) => {
   const [isEditable, setIsEditable] = useState(false);
   const [showComments, setShowComments] = useState(false);
 
@@ -18,7 +18,7 @@ const Post = ({ title, body, createdAt, comments, author, id }) => {
   const { editTitle, editBody } = editState;
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+
   const { user } = useSelector((state) => state.auth);
 
   // Format the date

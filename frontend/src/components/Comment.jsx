@@ -1,6 +1,9 @@
 import { useSelector } from 'react-redux';
+import { useContext } from 'react';
+import CommentContext from '../features/comments/commentContext';
+
 const Comment = ({ comment }) => {
-  const { body, createdAt, user: author } = comment;
+  const { body, createdAt, user: author, _id, post } = comment;
   const { user } = useSelector((state) => state.auth);
 
   // Format the date
@@ -11,6 +14,11 @@ const Comment = ({ comment }) => {
     year: 'numeric',
   });
 
+  const { deleteComment } = useContext(CommentContext);
+
+  const onDelete = (postId, commentId) => {
+    deleteComment(postId, commentId);
+  };
   return (
     <article className='p-6 mb-6 text-base bg-white rounded-lg dark:bg-gray-900'>
       <footer className='flex items-center justify-between mb-2'>
@@ -32,6 +40,7 @@ const Comment = ({ comment }) => {
         {/* Only show delete/edit buttons if User Id matches comment user ID */}
         {user._id === author._id && (
           <button
+            onClick={() => onDelete(post, _id)}
             class='btn text-white  font-bold uppercase text-xs px-4 py-2  hover:shadow-md outline-none focus:outline-none mr-1 mb-1'
             type='button'
           >
