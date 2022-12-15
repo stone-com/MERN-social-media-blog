@@ -31,15 +31,14 @@ const Explore = () => {
       {allPosts &&
         allPosts.map((post) => (
           <div key={post._id} className='m-1 bg-green-100 w-100'>
-            
-              <Post
-                title={post.title}
-                body={post.body}
-                author={post.user}
-                createdAt={post.createdAt}
-                comments={post.comments}
-                id={post._id}
-              />
+            <Post
+              title={post.title}
+              body={post.body}
+              author={post.user}
+              createdAt={post.createdAt}
+              commentIds={post.comments}
+              id={post._id}
+            />
           </div>
         ))}
     </div>

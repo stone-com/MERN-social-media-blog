@@ -1,13 +1,12 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FaTrash, FaPen, FaSave } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
 import { GiCancel } from 'react-icons/gi';
 import { deletePost, editPost } from '../features/posts/postSlice';
 import { CommentDisplay } from '../components/CommentDisplay';
 import { CommentProvider } from '../features/comments/commentContext';
 
-const Post = ({ title, body, createdAt, author, comments, id }) => {
+const Post = ({ title, body, createdAt, author, commentIds, id }) => {
   const [isEditable, setIsEditable] = useState(false);
   const [showComments, setShowComments] = useState(false);
 
@@ -99,14 +98,14 @@ const Post = ({ title, body, createdAt, author, comments, id }) => {
           <div className='flex '>
             {/* Like Icon can go here */}
             <span className='ml-1 font-light text-gray-500 dark:text-gray-400'>
-              8
+              8 Likes
             </span>
           </div>
           <div
             className='ml-1 font-light text-gray-500 dark:text-gray-400 hover:cursor-pointer'
             onClick={() => setShowComments(!showComments)}
           >
-            {comments.length} comments
+            {`${showComments ? 'Hide' : 'Show'} comments`}
           </div>
         </div>
         <div className='flex justify-end'>
