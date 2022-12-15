@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { PureComponent, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useContext } from 'react';
 import CommentContext from '../features/comments/commentContext';
@@ -6,7 +6,7 @@ import CommentContext from '../features/comments/commentContext';
 const CommentForm = ({ postId }) => {
   const [commentText, setCommentText] = useState('');
   const { user } = useSelector((state) => state.auth);
-  const { addComment } = useContext(CommentContext);
+  const { addComment, comments } = useContext(CommentContext);
 
   const onChange = (e) => {
     setCommentText(e.target.value);
@@ -38,12 +38,22 @@ const CommentForm = ({ postId }) => {
           required
         ></textarea>
       </div>
-      <button
-        type='submit'
-        className='inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800'
-      >
-        Post comment
-      </button>
+      <div className='flex justify-between'>
+        {' '}
+        <button
+          type='submit'
+          className='inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800'
+        >
+          Post comment
+        </button>
+        <p className='inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800'>
+          {comments.length === 0
+            ? 'No comments yet'
+            : comments.length === 1
+            ? '1 comment'
+            : comments.length > 1 && `${comments.length} total comments`}
+        </p>
+      </div>
     </form>
   );
 };
