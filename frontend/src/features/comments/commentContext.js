@@ -34,7 +34,7 @@ export const CommentProvider = ({ children }) => {
     }
   };
 
-  //   Edit a comment
+  // Edit a comment
   const editComment = async (postId, commentId, comment) => {
     setIsError(false);
     setIsLoading(true);
@@ -43,9 +43,11 @@ export const CommentProvider = ({ children }) => {
         `/api/comments/${postId}/${commentId}`,
         comment
       );
-      const updatedComments = comments.map((post) =>
-        comment._id === commentId ? result : post
+      console.log(result.data);
+      const updatedComments = comments.map((comment) =>
+        comment._id === commentId ? result.data : comment
       );
+      console.log(updatedComments);
       setComments(updatedComments);
     } catch (error) {
       setIsError(true);

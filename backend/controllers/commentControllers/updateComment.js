@@ -10,6 +10,7 @@ const updateComment = asyncHandler(async (req, res) => {
   const comment = await Comment.findById(commentId).populate('user');
 
   if (!comment) {
+    console.log(comment);
     res.status(400);
     throw new Error('Comment not found');
   }

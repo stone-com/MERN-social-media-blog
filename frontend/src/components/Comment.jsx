@@ -11,6 +11,7 @@ const Comment = ({ comment }) => {
   const [editedComment, setEditedComment] = useState('');
   const [isEditable, setIsEditable] = useState(false);
 
+  const { deleteComment, editComment } = useContext(CommentContext);
   // Format the date
   let date = new Date(createdAt);
   const formattedDate = date.toLocaleDateString('en-US', {
@@ -19,10 +20,13 @@ const Comment = ({ comment }) => {
     year: 'numeric',
   });
 
-  const { deleteComment } = useContext(CommentContext);
-
   const onChange = (e) => {
     setEditedComment(e.target.value);
+  };
+
+  const onEditSubmit = (postId, commentId, editedComment) => {
+    editComment(postId, commentId, { body: editedComment });
+    setIsEditable(false);
   };
   const onDelete = (postId, commentId) => {
     deleteComment(postId, commentId);
@@ -52,7 +56,10 @@ const Comment = ({ comment }) => {
             >
               <GiCancel />
             </button>
-            <button className='px-4 py-2 mx-1 mb-1 mr-1 text-xs font-bold text-white uppercase outline-none btn hover:shadow-md focus:outline-none'>
+            <button
+              className='px-4 py-2 mx-1 mb-1 mr-1 text-xs font-bold text-white uppercase outline-none btn hover:shadow-md focus:outline-none'
+              onClick={() => onEditSubmit(post, _id, editedComment)}
+            >
               <FaSave />
             </button>
           </div>
@@ -68,7 +75,7 @@ const Comment = ({ comment }) => {
               <FaPen />
             </button>
             <button
-              onClick={() => onDelete(post, _id)}
+              onClick={() => deleteComment(post, _id)}
               class='btn text-white  font-bold uppercase text-xs px-4 py-2  hover:shadow-md outline-none focus:outline-none mr-1 mb-1 mx-1'
               type='button'
             >
