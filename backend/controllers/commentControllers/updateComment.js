@@ -7,7 +7,7 @@ const updateComment = asyncHandler(async (req, res) => {
   const { body } = req.body;
 
   // Check to make sure comment exists
-  const comment = await Comment.findById(commentId);
+  const comment = await Comment.findById(commentId).populate('user');
 
   if (!comment) {
     res.status(400);

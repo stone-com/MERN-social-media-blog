@@ -34,6 +34,24 @@ export const CommentProvider = ({ children }) => {
     }
   };
 
+  //   Edit a comment
+  const editComment = async (postId, commentId, comment) => {
+    setIsError(false);
+    setIsLoading(true);
+    try {
+      const result = await axios.put(
+        `/api/comments/${postId}/${commentId}`,
+        comment
+      );
+      const updatedComments = comments.map((post) =>
+        comment._id === commentId ? result : post
+      );
+      setComments(updatedComments);
+    } catch (error) {
+      setIsError(true);
+    }
+  };
+
   // Delete a comment
   const deleteComment = async (postId, commentId) => {
     setIsError(false);
@@ -57,6 +75,7 @@ export const CommentProvider = ({ children }) => {
         fetchComments,
         addComment,
         deleteComment,
+        editComment,
       }}
     >
       {children}
