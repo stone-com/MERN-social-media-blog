@@ -15,9 +15,9 @@ export const CommentDisplay = (id) => {
       <div className='max-w-4xl px-4 mx-auto'>
         <CommentForm postId={id} />
         {comments &&
-          comments.map((comment, index) => (
-            <Comment key={index} comment={comment} />
-          ))}
+          comments
+            .map((comment, index) => <Comment key={index} comment={comment} />)
+            .reverse()}
       </div>
     </section>
   );

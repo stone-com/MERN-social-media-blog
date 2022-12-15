@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-
+import { useContext } from 'react';
+import CommentContext from '../features/comments/commentContext';
 
 const CommentForm = ({ postId }) => {
   const [commentText, setCommentText] = useState('');
   const { user } = useSelector((state) => state.auth);
+  const { addComment } = useContext(CommentContext);
 
   const onChange = (e) => {
     setCommentText(e.target.value);
@@ -12,6 +14,12 @@ const CommentForm = ({ postId }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    addComment(postId.id, {
+      userId: user._id,
+      post: postId.id,
+      body: commentText,
+    });
+    setCommentText('');
   };
 
   return (

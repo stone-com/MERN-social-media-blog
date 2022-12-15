@@ -22,8 +22,22 @@ export const CommentProvider = ({ children }) => {
     setIsLoading(false);
   };
 
+  // Add a comment
+  const addComment = async (postId, comment) => {
+    setIsError(false);
+    setIsLoading(true);
+    try {
+      const result = await axios.post(`/api/comments/${postId}`, comment);
+      setComments((prev) => [...prev, result.data]);
+    } catch (error) {
+      setIsError(true);
+    }
+  };
+
   return (
-    <CommentContext.Provider value={{ comments, setComments, fetchComments }}>
+    <CommentContext.Provider
+      value={{ comments, setComments, fetchComments, addComment }}
+    >
       {children}
     </CommentContext.Provider>
   );
