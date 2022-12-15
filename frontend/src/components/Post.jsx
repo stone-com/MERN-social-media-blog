@@ -4,7 +4,8 @@ import { FaTrash, FaPen, FaSave } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { GiCancel } from 'react-icons/gi';
 import { deletePost, editPost } from '../features/posts/postSlice';
-import CommentDisplay from './CommentDisplay';
+import { CommentDisplay } from '../components/CommentDisplay';
+import { CommentProvider } from '../features/comments/commentContext';
 
 const Post = ({ title, body, createdAt, comments, author, id }) => {
   const [isEditable, setIsEditable] = useState(false);
@@ -156,7 +157,12 @@ const Post = ({ title, body, createdAt, comments, author, id }) => {
           Content is now editable
         </div>
       )}
-      {showComments && <CommentDisplay id={id} />}
+      {/* If show Comments is toggled, render the comment display, wrapped in comment provider instance to manage comment state */}
+      {showComments && (
+        <CommentProvider>
+          <CommentDisplay id={id} />
+        </CommentProvider>
+      )}
     </div>
   );
 };
