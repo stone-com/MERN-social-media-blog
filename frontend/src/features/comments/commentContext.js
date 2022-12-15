@@ -43,11 +43,9 @@ export const CommentProvider = ({ children }) => {
         `/api/comments/${postId}/${commentId}`,
         comment
       );
-      console.log(result.data);
       const updatedComments = comments.map((comment) =>
         comment._id === commentId ? result.data : comment
       );
-      console.log(updatedComments);
       setComments(updatedComments);
     } catch (error) {
       setIsError(true);
