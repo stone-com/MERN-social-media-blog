@@ -2,7 +2,6 @@ import profilePic from '../profilepic.jpeg';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import useGetUserProfile from '../hooks/useGetUserProfile';
 import Post from '../components/Post';
 import { getUserProfile } from '../features/profile/profileSlice';
 
