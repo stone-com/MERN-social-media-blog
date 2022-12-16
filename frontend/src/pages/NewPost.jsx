@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { createPost, reset } from '../features/posts/postSlice';
 
 const NewPost = () => {
-  const [formData, setformData] = useState({
+  const [formData, setFormData] = useState({
     title: '',
     body: '',
   });
@@ -22,7 +22,7 @@ const NewPost = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setformData((prevState) => ({
+    setFormData((prevState) => ({
       ...formData,
       [name]: value,
     }));
@@ -35,7 +35,7 @@ const NewPost = () => {
       user,
     };
     dispatch(createPost(postData));
-    setformData({ title: '', body: '' });
+    setFormData({ title: '', body: '' });
     navigate('/explore');
   };
 
@@ -45,6 +45,7 @@ const NewPost = () => {
         New Post
       </div>
       <form
+        enctype='multipart/form-data'
         onSubmit={handleSubmit}
         className='flex flex-col w-10/12 max-w-2xl p-4 mx-auto text-gray-800 border border-gray-300 shadow-lg editor'
       >

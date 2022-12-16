@@ -21,6 +21,35 @@ const userSchema = new mongoose.Schema(
         ref: 'User',
       },
     ],
+    followers: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+      },
+    ],
+    birthday: {
+      type: Date,
+    },
+    location: {
+      city: {
+        type: String,
+      },
+      state: {
+        type: String,
+      },
+    },
+    profilePic: {
+      type: String,
+    },
+    gender: {
+      type: String,
+    },
+    occupation: {
+      type: String,
+    },
+    bio: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
