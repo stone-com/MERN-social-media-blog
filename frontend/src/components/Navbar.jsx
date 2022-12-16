@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout, reset } from '../features/auth/authSlice';
 
 export default function NavBar() {
   const [navbar, setNavbar] = useState(false);
   // Use state to track the active link
   const [activeLink, setActiveLink] = useState('/explore');
-
+  const { user } = useSelector((state) => state.auth);
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -92,10 +92,10 @@ export default function NavBar() {
               </li>
               <li
                 className={`text-gray-600 hover:text-blue-600 ${
-                  activeLink === '/profile' ? 'active' : ''
+                  activeLink === `/profile/` ? 'active' : ''
                 }`}
               >
-                <Link to='/profile'>Profile</Link>
+                <Link to={'/profile/' + user._id}>Profile</Link>
               </li>
               <li
                 className={`text-gray-600 hover:text-blue-600 ${
