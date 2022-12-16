@@ -2,28 +2,24 @@ import profilePic from '../profilepic.jpeg';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import useGetUserProfile from '../hooks/useGetUserProfile';
+import useGetUserPosts from '../hooks/useGetUserPosts';
 import Post from '../components/Post';
 
 const Profile = () => {
-  const { user } = useSelector((state) => state.auth);
-  const { allPosts } = useSelector((state) => state.posts);
   const { pathname } = useLocation();
 
   // Get the ID for user profile from the location pathname.
   // Location.pathname returns /users/:id so we need to split the string at the slashes then take the second index to get the id.
   const paramsId = pathname.split('/')[2];
-  const { data, isLoading, isError } = useGetUserProfile(paramsId);
-  console.log(data);
+  const { data } = useGetUserProfile(paramsId);
+  console.log(data?.posts);
 
-  // filter out only posts from the user whos profile it is
-  const userPosts = allPosts.filter((post) => post.user._id === paramsId);
-  console.log(userPosts);
+  //  *** NEED TO REDO THIS WHOLE THING. GOING TO USE REDUX TO STORE SINGLE 'PROFILE' STATE THAT GETS ALL USER INFO+POSTS FOR SINGLE USER AT A TIME
+  // WILL PROBABLY MAKE THE USER ROUTE JUST POPULATE POSTS TOO ***
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
   return (
     <>
+      <div>PROFILE</div>
       {data && (
         <main className='profile-page'>
           <section className='relative block' style={{ height: '500px' }}>
@@ -155,23 +151,21 @@ const Profile = () => {
           </section>
         </main>
       )}
-      <div className="container grid-cols-1">
-
-         {userPosts &&
-        userPosts.map((post) => (
-          <div key={post._id} className='m-1 bg-green-100 w-100'>
-            <Post
-              title={post.title}
-              body={post.body}
-              author={post.user}
-              createdAt={post.createdAt}
-              commentIds={post.comments}
-              id={post._id}
-            />
-          </div>
-        ))}
+      <div className='container items-center justify-center max-w-5xl grid-cols-1 px-4 m-auto mt-8'>
+        {data?.posts &&
+          data.posts.map((post) => (
+            <div key={post._id} className='m-1 bg-green-100 w-100'>
+              <Post
+                title={post.title}
+                body={post.body}
+                author={post.user}
+                createdAt={post.createdAt}
+                commentIds={post.comments}
+                id={post._id}
+              />
+            </div>
+          ))}
       </div>
-     
     </>
   );
 };
