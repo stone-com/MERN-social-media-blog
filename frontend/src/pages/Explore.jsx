@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Post from '../components/Post';
 
-
 const Explore = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -32,9 +31,10 @@ const Explore = () => {
         allPosts.map((post) => (
           <div key={post._id} className='m-1 bg-green-100 w-100'>
             <Post
+              ownPost={user._id === post.user._id ? true : false}
               title={post.title}
               body={post.body}
-              author={post.user}
+              author={post.user.name}
               createdAt={post.createdAt}
               commentIds={post.comments}
               id={post._id}

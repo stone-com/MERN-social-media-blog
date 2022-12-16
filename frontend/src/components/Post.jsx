@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FaTrash, FaPen, FaSave } from 'react-icons/fa';
 import { GiCancel } from 'react-icons/gi';
@@ -6,7 +6,7 @@ import { deletePost, editPost } from '../features/posts/postSlice';
 import { CommentDisplay } from '../components/CommentDisplay';
 import { CommentProvider } from '../features/comments/commentContext';
 
-const Post = ({ title, body, createdAt, author, id }) => {
+const Post = ({ title, body, createdAt, author, id, ownPost }) => {
   const [isEditable, setIsEditable] = useState(false);
   const [showComments, setShowComments] = useState(false);
 
@@ -17,6 +17,7 @@ const Post = ({ title, body, createdAt, author, id }) => {
   const { editTitle, editBody } = editState;
 
   const dispatch = useDispatch();
+  console.log(`author: ${author}`);
 
   const { user } = useSelector((state) => state.auth);
 
@@ -54,7 +55,7 @@ const Post = ({ title, body, createdAt, author, id }) => {
           />
           <div className='ml-2 mt-0.5'>
             <span className='block text-base font-medium leading-snug text-black dark:text-gray-100'>
-              {author.name}
+              {author}
             </span>
             <span className='block text-sm font-light leading-snug text-gray-500 dark:text-gray-400'>
               {formattedDate}
@@ -131,7 +132,8 @@ const Post = ({ title, body, createdAt, author, id }) => {
             </>
           )}
           {/* Only show edit and delete buttons if logged in user matches userId of the post */}
-          {user && user._id === author._id && !isEditable && (
+
+          {ownPost && !isEditable && (
             <>
               <button
                 className='mx-1 bg-blue-500 btn'

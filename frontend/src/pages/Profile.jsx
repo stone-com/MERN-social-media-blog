@@ -13,10 +13,12 @@ const Profile = () => {
   const paramsId = pathname.split('/')[2];
   const { currentProfile } = useSelector((state) => state.profile);
 
+  console.log(currentProfile);
+
   useEffect(() => {
     dispatch(getUserProfile(paramsId));
   }, [paramsId]);
-  console.log(currentProfile);
+
   return (
     <>
       <div>PROFILE</div>
@@ -156,9 +158,10 @@ const Profile = () => {
           currentProfile.posts.map((post) => (
             <div key={post._id} className='m-1 bg-green-100 w-100'>
               <Post
+                ownPost={true}
                 title={post.title}
                 body={post.body}
-                author={post.user}
+                author={currentProfile.name}
                 createdAt={post.createdAt}
                 commentIds={post.comments}
                 id={post._id}
