@@ -2,7 +2,6 @@ import profilePic from '../profilepic.jpeg';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import useGetUserProfile from '../hooks/useGetUserProfile';
-import useGetUserPosts from '../hooks/useGetUserPosts';
 import Post from '../components/Post';
 
 const Profile = () => {
@@ -101,7 +100,7 @@ const Profile = () => {
                         </div>
                         <div className='p-3 text-center lg:mr-4'>
                           <span className='block text-xl font-bold tracking-wide text-gray-700 uppercase'>
-                            0
+                            {data.posts.length}
                           </span>
                           <span className='text-sm text-gray-500'>Posts</span>
                         </div>

@@ -6,7 +6,7 @@ import { deletePost, editPost } from '../features/posts/postSlice';
 import { CommentDisplay } from '../components/CommentDisplay';
 import { CommentProvider } from '../features/comments/commentContext';
 
-const Post = ({ title, body, createdAt, author, commentIds, id }) => {
+const Post = ({ title, body, createdAt, author, id }) => {
   const [isEditable, setIsEditable] = useState(false);
   const [showComments, setShowComments] = useState(false);
 
