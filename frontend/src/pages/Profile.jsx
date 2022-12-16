@@ -1,25 +1,27 @@
 import profilePic from '../profilepic.jpeg';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import useGetUserProfile from '../hooks/useGetUserProfile';
 import Post from '../components/Post';
+import { getUserProfile } from '../features/profile/profileSlice';
 
 const Profile = () => {
   const { pathname } = useLocation();
-
+  const dispatch = useDispatch();
   // Get the ID for user profile from the location pathname.
   // Location.pathname returns /users/:id so we need to split the string at the slashes then take the second index to get the id.
   const paramsId = pathname.split('/')[2];
-  const { data } = useGetUserProfile(paramsId);
-  console.log(data?.posts);
+  const { currentProfile } = useSelector((state) => state.profile);
 
-  //  *** NEED TO REDO THIS WHOLE THING. GOING TO USE REDUX TO STORE SINGLE 'PROFILE' STATE THAT GETS ALL USER INFO+POSTS FOR SINGLE USER AT A TIME
-  // WILL PROBABLY MAKE THE USER ROUTE JUST POPULATE POSTS TOO ***
-
+  useEffect(() => {
+    dispatch(getUserProfile(paramsId));
+  }, [paramsId]);
+  console.log(currentProfile);
   return (
     <>
       <div>PROFILE</div>
-      {data && (
+      {currentProfile && (
         <main className='profile-page'>
           <section className='relative block' style={{ height: '500px' }}>
             <div
@@ -100,7 +102,7 @@ const Profile = () => {
                         </div>
                         <div className='p-3 text-center lg:mr-4'>
                           <span className='block text-xl font-bold tracking-wide text-gray-700 uppercase'>
-                            {data.posts.length}
+                            {currentProfile.posts?.length}
                           </span>
                           <span className='text-sm text-gray-500'>Posts</span>
                         </div>
@@ -109,7 +111,7 @@ const Profile = () => {
                   </div>
                   <div className='mt-12 text-center'>
                     <h3 className='mb-2 text-4xl font-semibold leading-normal text-gray-800'>
-                      {data.name}
+                      {currentProfile.name}
                     </h3>
                     <div className='mt-0 mb-2 text-sm font-bold leading-normal text-gray-500 uppercase'>
                       <i className='mr-2 text-lg text-gray-500 fas fa-map-marker-alt'></i>{' '}
@@ -151,8 +153,8 @@ const Profile = () => {
         </main>
       )}
       <div className='container items-center justify-center max-w-5xl grid-cols-1 px-4 m-auto mt-8'>
-        {data?.posts &&
-          data.posts.map((post) => (
+        {currentProfile?.posts &&
+          currentProfile.posts.map((post) => (
             <div key={post._id} className='m-1 bg-green-100 w-100'>
               <Post
                 title={post.title}
