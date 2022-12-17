@@ -1,14 +1,21 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getUserProfile } from '../features/profile/profileSlice';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 const EditProfile = () => {
-  const [formData, setFormData] = useState({
-    birthday: '',
-    city: '',
-    state: '',
-    gender: 'male',
-    occupation: '',
-    bio: '',
-    profilePic: '',
-  });
+  const { currentProfile } = useSelector((state) => state.profile);
+  const [formData, setFormData] = useState({});
+
+  const { user } = useSelector((state) => state.auth);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  // get all profile info of current user when mounting the component.
+  useEffect(() => {
+    dispatch(getUserProfile(user._id));
+  }, []);
 
   const { birthday, city, state, gender, occupation, bio, profilePic } =
     formData;
@@ -18,7 +25,13 @@ const EditProfile = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    // submit form data to backend or process form data
+    const editUser = async () => {
+      const editedUser = await axios.put(`/api/users/${user._id}`, formData);
+      console.log(editedUser.data);
+    };
+
+    editUser();
+    navigate(`/profile/${user._id}`);
   };
 
   return (

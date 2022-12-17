@@ -30,13 +30,11 @@ const userSchema = new mongoose.Schema(
     birthday: {
       type: Date,
     },
-    location: {
-      city: {
-        type: String,
-      },
-      state: {
-        type: String,
-      },
+    city: {
+      type: String,
+    },
+    state: {
+      type: String,
     },
     profilePic: {
       type: String,
