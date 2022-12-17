@@ -13,7 +13,7 @@ const Profile = () => {
   const paramsId = pathname.split('/')[2];
   const { currentProfile } = useSelector((state) => state.profile);
 
-  console.log(currentProfile);
+
 
   useEffect(() => {
     dispatch(getUserProfile(paramsId));

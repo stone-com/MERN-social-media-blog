@@ -17,7 +17,6 @@ const Post = ({ title, body, createdAt, author, id, ownPost }) => {
   const { editTitle, editBody } = editState;
 
   const dispatch = useDispatch();
-  console.log(`author: ${author}`);
 
   const { user } = useSelector((state) => state.auth);
 
