@@ -1,6 +1,6 @@
 import profilePic from '../profilepic.jpeg';
 import axios from 'axios';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation, Link } from 'react-router-dom';
 import Post from '../components/Post';
@@ -9,9 +9,12 @@ import { BsGenderFemale, BsGenderMale } from 'react-icons/bs';
 import { GiFemaleVampire } from 'react-icons/gi';
 import { FaLocationArrow } from 'react-icons/fa';
 import { FaBriefcase } from 'react-icons/fa';
+import NewPost from './NewPost';
 
 const Profile = () => {
   const { pathname } = useLocation();
+
+  const [showPostForm, setShowPostForm] = useState(false);
   const dispatch = useDispatch();
   // Get the ID for user profile from the location pathname.
   // Location.pathname returns /users/:id so we need to split the string at the slashes then take the second index to get the id.
@@ -165,6 +168,15 @@ const Profile = () => {
             </div>
           </div>
         )}
+        <div className='flex justify-around'>
+          <button
+            className='btn'
+            onClick={() => setShowPostForm(!showPostForm)}
+          >
+            Create New Post
+          </button>
+        </div>
+        {showPostForm && <NewPost />}
         <div className='container items-center justify-center w-full max-w-5xl grid-cols-1 px-4 m-auto mt-8'>
           {currentProfile?.posts &&
             currentProfile.posts.map((post) => (
