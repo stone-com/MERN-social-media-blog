@@ -31,7 +31,7 @@ const Profile = () => {
   // Format the dates for birthday and createdAt
   let birthdayDate = new Date(birthday);
   const formattedBirthday = birthdayDate.toLocaleDateString('en-US', {
-    month: 'long',
+    month: 'numeric',
     day: 'numeric',
     year: 'numeric',
   });
@@ -111,7 +111,7 @@ const Profile = () => {
                         </div>
                         <div className='p-3 text-center lg:mr-4'>
                           <span className='block text-xl font-bold tracking-wide text-gray-700 uppercase'>
-                            {currentProfile.posts?.length}
+                            {currentProfile.posts?.length || 0}
                           </span>
                           <span className='text-sm text-gray-500'>Posts</span>
                         </div>
