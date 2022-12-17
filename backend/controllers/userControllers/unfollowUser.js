@@ -19,8 +19,8 @@ const unfollowUser = async (req, res) => {
     res.status(200).json('unfollowing the user');
   } catch (err) {
     res.status(400);
-    throw new Error(err);
+    throw new Error('Error');
   }
 };
 
-module.exports = unfollowUser
+module.exports = unfollowUser;

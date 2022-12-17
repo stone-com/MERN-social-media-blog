@@ -52,11 +52,18 @@ const Profile = () => {
   const follow = async () => {
     const response = await axios.put(
       `/api/users/follow/${currentProfile._id}`,
-      {id: user._id}
+      { id: user._id }
     );
+    dispatch(getUserProfile(paramsId));
     console.log(response);
   };
-  const unfollow = () => {};
+  const unFollow = async () => {
+    const response = await axios.put(
+      `/api/users/unfollow/${currentProfile._id}`,
+      { id: user._id }
+    );
+    dispatch(getUserProfile(paramsId));
+  };
 
   return (
     <div className='container items-center justify-center max-w-5xl grid-cols-1 px-4 py-3 m-auto bg-blue-100'>
@@ -78,7 +85,7 @@ const Profile = () => {
                     <div className='lg:w-4/12 lg:order-3 lg:text-right lg:self-center'>
                       <div className='px-3 py-2 mt-4 sm:mt-0'>
                         {/* Conditionally render follow button or edit profile button */}
-                        {user._id === currentProfile._id ? (
+                        {user._id === currentProfile._id && (
                           <Link to='/editprofile'>
                             <button
                               className='self-center px-4 py-2 mb-1 text-xs font-bold text-white uppercase bg-pink-500 rounded shadow outline-none active:bg-pink-600 hover:shadow-md focus:outline-none sm:mr-2'
@@ -89,7 +96,11 @@ const Profile = () => {
                               Edit Profile
                             </button>
                           </Link>
-                        ) : (
+                        )}
+                        {/* IF userId matches profile state ID, show nothing, else render a follow/unfollow button the followers list of currentProfile */}
+                        {user._id ===
+                        currentProfile._id ? null : currentProfile.followers &&
+                          !currentProfile?.followers.includes(user._id) ? (
                           <button
                             className='self-center px-4 py-2 mb-1 text-xs font-bold text-white uppercase bg-pink-500 rounded shadow outline-none active:bg-pink-600 hover:shadow-md focus:outline-none sm:mr-2'
                             type='button'
@@ -98,6 +109,15 @@ const Profile = () => {
                           >
                             Follow
                           </button>
+                        ) : (
+                          <button
+                            className='self-center px-4 py-2 mb-1 text-xs font-bold text-white uppercase bg-pink-500 rounded shadow outline-none active:bg-pink-600 hover:shadow-md focus:outline-none sm:mr-2'
+                            type='button'
+                            style={{ transition: 'all .15s ease' }}
+                            onClick={unFollow}
+                          >
+                            Unfollow
+                          </button>
                         )}
                       </div>
                     </div>
@@ -105,7 +125,7 @@ const Profile = () => {
                       <div className='flex justify-center m-auto lg:pt-4'>
                         <div className='p-3 mr-4 text-center'>
                           <span className='block text-xl font-bold tracking-wide text-gray-700 uppercase'>
-                            22
+                            {currentProfile.followers?.length || 0}
                           </span>
                           <span className='text-sm text-gray-500'>
                             Followers
@@ -113,7 +133,7 @@ const Profile = () => {
                         </div>
                         <div className='p-3 mr-4 text-center'>
                           <span className='block text-xl font-bold tracking-wide text-gray-700 uppercase'>
-                            10
+                            {currentProfile.following?.length || 0}
                           </span>
                           <span className='text-sm text-gray-500'>
                             Following
