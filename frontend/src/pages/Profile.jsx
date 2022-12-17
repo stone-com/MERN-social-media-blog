@@ -1,4 +1,5 @@
 import profilePic from '../profilepic.jpeg';
+import axios from 'axios';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation, Link } from 'react-router-dom';
@@ -48,6 +49,15 @@ const Profile = () => {
   }, [paramsId]);
   console.log(currentProfile);
 
+  const follow = async () => {
+    const response = await axios.put(
+      `/api/users/follow/${currentProfile._id}`,
+      {id: user._id}
+    );
+    console.log(response);
+  };
+  const unfollow = () => {};
+
   return (
     <div className='container items-center justify-center max-w-5xl grid-cols-1 px-4 py-3 m-auto bg-blue-100'>
       {currentProfile && (
@@ -84,7 +94,7 @@ const Profile = () => {
                             className='self-center px-4 py-2 mb-1 text-xs font-bold text-white uppercase bg-pink-500 rounded shadow outline-none active:bg-pink-600 hover:shadow-md focus:outline-none sm:mr-2'
                             type='button'
                             style={{ transition: 'all .15s ease' }}
-                            onClick={() => console.log('click!')}
+                            onClick={follow}
                           >
                             Follow
                           </button>

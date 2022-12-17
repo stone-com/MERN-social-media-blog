@@ -14,9 +14,9 @@ const Explore = () => {
     if (!user) {
       navigate('/login');
 
-      if (isError) {
-        console.log(message);
-      }
+      // if (isError) {
+      //   console.log(message);
+      // }
     }
     dispatch(getPosts());
   }, []);
