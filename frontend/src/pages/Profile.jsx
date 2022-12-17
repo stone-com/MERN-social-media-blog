@@ -61,7 +61,7 @@ const Profile = () => {
                   <img
                     alt='...'
                     src={profilePic}
-                    className='h-auto align-middle border-none rounded-full shadow-xl'
+                    className='h-auto align-middle border-2 border-green-600 rounded-full shadow-xl'
                     style={{ maxWidth: '150px' }}
                   />
                 </div>
@@ -127,7 +127,7 @@ const Profile = () => {
                   </div>
                 </div>
               </div>
-              <div className='mt-12 text-center'>
+              <div className='p-3 mt-12 text-center bg-green-400 border-4 border-green-600 border-solid rounded-2xl'>
                 <h3 className='flex justify-center mb-2 text-4xl font-semibold leading-normal text-gray-800'>
                   {currentProfile.name}
                   {currentProfile.gender === 'male' ? (

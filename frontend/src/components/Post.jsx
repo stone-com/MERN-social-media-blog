@@ -6,6 +6,7 @@ import { deletePost, editPost } from '../features/posts/postSlice';
 import { CommentDisplay } from '../components/CommentDisplay';
 import { CommentProvider } from '../features/comments/commentContext';
 import { Link } from 'react-router-dom';
+import CommentForm from './CommentForm';
 
 const Post = ({ title, body, createdAt, author, id, ownPost, authorId }) => {
   const [isEditable, setIsEditable] = useState(false);
@@ -155,11 +156,9 @@ const Post = ({ title, body, createdAt, author, id, ownPost, authorId }) => {
         </div>
       )}
       {/* If show Comments is toggled, render the comment display, wrapped in comment provider instance to manage comment state */}
-      {showComments && (
-        <CommentProvider>
-          <CommentDisplay id={id} />
-        </CommentProvider>
-      )}
+      <CommentProvider>
+        {showComments && <CommentDisplay id={id} />}
+      </CommentProvider>
     </div>
   );
 };

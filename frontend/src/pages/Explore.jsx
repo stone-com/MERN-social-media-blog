@@ -18,7 +18,7 @@ const Explore = () => {
   }, []);
 
   return (
-    <div className='flex justify-center bg-red-200 space-around align-center'>
+    <div className='flex justify-center h-screen bg-red-200 space-around align-center'>
       <div className='items-center justify-center max-w-5xl grid-cols-1 px-4 m-auto mt-8'>
         {allPosts &&
           allPosts.map((post) => (
