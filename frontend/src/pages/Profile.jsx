@@ -39,21 +39,19 @@ const Profile = () => {
                 <div className='flex flex-col w-full min-w-0 mb-6 break-words bg-green-200 rounded-lg shadow-xl '>
                   <div className='px-6'>
                     <div className='flex flex-wrap justify-center'>
-                      <div className='flex justify-center w-full px-4 lg:w-3/12 lg:order-2'>
-                        <div className='relative'>
-                          <img
-                            alt='...'
-                            src={profilePic}
-                            className='h-auto -m-16 -ml-20 align-middle border-none rounded-full shadow-xl lg:-ml-16'
-                            style={{ maxWidth: '150px' }}
-                          />
-                        </div>
+                      <div className='flex justify-center w-full px-4 rounded lg:w-3/12 lg:order-2'>
+                        <img
+                          alt='...'
+                          src={profilePic}
+                          className='h-auto align-middle border-none rounded-full shadow-xl'
+                          style={{ maxWidth: '150px' }}
+                        />
                       </div>
-                      <div className='w-full px-4 lg:w-4/12 lg:order-3 lg:text-right lg:self-center'>
-                        <div className='px-3 py-6 mt-32 sm:mt-0'>
+                      <div className='lg:w-4/12 lg:order-3 lg:text-right lg:self-center'>
+                        <div className='px-3 py-2 mt-4 sm:mt-0'>
                           <Link to='/editprofile'>
                             <button
-                              className='px-4 py-2 mb-1 text-xs font-bold text-white uppercase bg-pink-500 rounded shadow outline-none active:bg-pink-600 hover:shadow-md focus:outline-none sm:mr-2'
+                              className='self-center px-4 py-2 mb-1 text-xs font-bold text-white uppercase bg-pink-500 rounded shadow outline-none active:bg-pink-600 hover:shadow-md focus:outline-none sm:mr-2'
                               type='button'
                               style={{ transition: 'all .15s ease' }}
                               onClick={() => console.log('click!')}
@@ -64,7 +62,7 @@ const Profile = () => {
                         </div>
                       </div>
                       <div className='w-full px-4 lg:w-4/12 lg:order-1'>
-                        <div className='flex justify-center py-4 pt-8 lg:pt-4'>
+                        <div className='flex justify-center m-auto lg:pt-4'>
                           <div className='p-3 mr-4 text-center'>
                             <span className='block text-xl font-bold tracking-wide text-gray-700 uppercase'>
                               22
