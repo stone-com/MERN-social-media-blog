@@ -4,7 +4,7 @@ const EditProfile = () => {
     birthday: '',
     city: '',
     state: '',
-    gender: '',
+    gender: 'male',
     occupation: '',
     bio: '',
     profilePic: '',
@@ -71,13 +71,18 @@ const EditProfile = () => {
           >
             Gender:
           </label>
-          <input
-            type='text'
+          <select
             name='gender'
             value={gender}
             onChange={onChange}
             className='w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
-          />
+          >
+            <option value='male'>Male</option>
+            <option value='female' selected>
+              Female
+            </option>
+            <option value='other'>Other</option>
+          </select>
           <br />
           <label
             htmlFor='occupation'
