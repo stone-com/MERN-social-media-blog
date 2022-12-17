@@ -36,11 +36,11 @@ const EditProfile = () => {
   };
 
   return (
-    <div className='flex justify-center space-around align-center'>
-      <div className='w-full mt-10 sm:w-3/6'>
+    <div className='flex justify-center bg-red-200 space-around align-center'>
+      <div className='w-full mt-10 rounded-md sm:w-3/6'>
         <form
           onSubmit={onSubmit}
-          className='px-8 pt-6 pb-8 mb-4 bg-white rounded shadow-md'
+          className='px-8 pt-6 pb-8 mb-4 bg-green-200 rounded-md shadow-md'
         >
           <label htmlFor='birthday'>Birthday:</label>
           <input
@@ -48,7 +48,7 @@ const EditProfile = () => {
             name='birthday'
             value={birthday}
             onChange={onChange}
-            className='w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
+            className='w-full p-2 mb-4 bg-gray-100 border border-gray-300 outline-none title'
           />
           <br />
           <label
@@ -62,7 +62,7 @@ const EditProfile = () => {
             name='city'
             value={city}
             onChange={onChange}
-            className='w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
+            className='w-full p-2 mb-4 bg-gray-100 border border-gray-300 outline-none title'
           />
           <br />
           <label
@@ -76,7 +76,7 @@ const EditProfile = () => {
             name='state'
             value={state}
             onChange={onChange}
-            className='w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
+            className='w-full p-2 mb-4 bg-gray-100 border border-gray-300 outline-none title'
           />
           <br />
           <label
@@ -89,7 +89,7 @@ const EditProfile = () => {
             name='gender'
             value={gender}
             onChange={onChange}
-            className='w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
+            className='w-full p-2 mb-4 bg-gray-100 border border-gray-300 outline-none title'
           >
             <option value='male'>Male</option>
             <option value='female' selected>
@@ -109,7 +109,7 @@ const EditProfile = () => {
             name='occupation'
             value={occupation}
             onChange={onChange}
-            className='w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
+            className='w-full p-2 mb-4 bg-gray-100 border border-gray-300 outline-none title'
           />
           <br />
           <label
@@ -122,7 +122,7 @@ const EditProfile = () => {
             name='bio'
             value={bio}
             onChange={onChange}
-            className='w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
+            className='w-full p-2 mb-4 bg-gray-100 border border-gray-300 outline-none title'
           />
           <br />
           <label
@@ -141,7 +141,7 @@ const EditProfile = () => {
           <br />
           <button
             type='submit'
-            className='px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline'
+            className='self-center px-4 py-2 mt-3 mb-1 text-xs font-bold text-white uppercase bg-pink-500 rounded shadow outline-none active:bg-pink-600 hover:shadow-md focus:outline-none sm:mr-2'
           >
             Submit
           </button>

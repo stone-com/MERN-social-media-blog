@@ -45,7 +45,7 @@ const Post = ({ title, body, createdAt, author, id, ownPost, authorId }) => {
   };
 
   return (
-    <div className='max-w-5xl px-5 py-4 my-5 bg-white rounded-lg shadow dark:bg-gray-800'>
+    <div className='px-5 py-4 my-5 bg-green-200 shadow-xl  rounded-3xl'>
       <div className='grid grid-cols-3'>
         <div className='flex col-span-1 mb-4 mr-3'>
           <img
@@ -54,17 +54,17 @@ const Post = ({ title, body, createdAt, author, id, ownPost, authorId }) => {
             alt='profile pic'
           />
           <div className='ml-2 mt-0.5'>
-            <span className='block text-base font-medium leading-snug text-black dark:text-gray-100'>
+            <span className='block text-base font-medium leading-snug text-black '>
               <Link to={`/profile/${authorId}`}>{author}</Link>
             </span>
-            <span className='block text-sm font-light leading-snug text-gray-500 dark:text-gray-400'>
+            <span className='block text-sm font-light leading-snug text-gray-500 '>
               {formattedDate}
             </span>
           </div>
         </div>
         {/* Render either the post title or an input field depending on isEditable State */}
         {!isEditable ? (
-          <p className='flex justify-start col-span-2 px-6 text-2xl text-white'>
+          <p className='flex justify-start col-span-2 px-6 text-2xl text-black'>
             {title}
           </p>
         ) : (
@@ -81,9 +81,7 @@ const Post = ({ title, body, createdAt, author, id, ownPost, authorId }) => {
       </div>
       {/* Render either the post body or an input field depending on isEditable State */}
       {!isEditable ? (
-        <p className='leading-snug text-gray-800 dark:text-gray-100 md:leading-normal'>
-          {body}
-        </p>
+        <p className='leading-snug text-gray-800 md:leading-normal'>{body}</p>
       ) : (
         <input
           type='text'
@@ -98,12 +96,10 @@ const Post = ({ title, body, createdAt, author, id, ownPost, authorId }) => {
         <div>
           <div className='flex '>
             {/* Like Icon can go here */}
-            <span className='ml-1 font-light text-gray-500 dark:text-gray-400'>
-              8 Likes
-            </span>
+            <span className='ml-1 font-light text-gray-500 '>8 Likes</span>
           </div>
           <div
-            className='ml-1 font-light text-gray-500 dark:text-gray-400 hover:cursor-pointer'
+            className='ml-1 font-light text-gray-500 hover:cursor-pointer'
             onClick={() => setShowComments(!showComments)}
           >
             {`${showComments ? 'Hide' : 'Show'} comments`}
