@@ -1,9 +1,8 @@
-import { createSlice, createAsyncThunk} from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import postService from './postService';
 
 const initialState = {
   allPosts: [],
-  followingPosts: [],
   isError: false,
   isLoading: false,
   isSuccess: false,

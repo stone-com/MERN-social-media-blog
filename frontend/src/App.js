@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 import Explore from './pages/Explore';
 import Profile from './pages/Profile';
 import EditProfile from './pages/EditProfile';
+import Following from './pages/Following';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/newPost' element={<NewPost />} />
           <Route path='/explore' element={<Explore />} />
+          <Route path='/following' element={<Following />} />
           <Route path='/profile/:id' element={<Profile />} />
           <Route path='/editProfile' element={<EditProfile />} />
         </Routes>

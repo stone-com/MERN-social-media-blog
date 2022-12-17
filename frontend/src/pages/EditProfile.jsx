@@ -42,15 +42,6 @@ const EditProfile = () => {
           onSubmit={onSubmit}
           className='px-8 pt-6 pb-8 mb-4 bg-green-200 rounded-md shadow-md'
         >
-          <label htmlFor='birthday'>Birthday:</label>
-          <input
-            type='date'
-            name='birthday'
-            value={birthday}
-            onChange={onChange}
-            className='w-full p-2 mb-4 bg-gray-100 border border-gray-300 outline-none title'
-          />
-          <br />
           <label
             htmlFor='city'
             className='block mb-2 text-sm font-bold text-gray-700'
@@ -92,9 +83,7 @@ const EditProfile = () => {
             className='w-full p-2 mb-4 bg-gray-100 border border-gray-300 outline-none title'
           >
             <option value='male'>Male</option>
-            <option value='female' selected>
-              Female
-            </option>
+            <option value='female'>Female</option>
             <option value='other'>Other</option>
           </select>
           <br />

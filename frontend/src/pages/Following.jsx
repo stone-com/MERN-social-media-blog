@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Post from '../components/Post';
 
-const Explore = () => {
+const Following = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { allPosts, isError, message } = useSelector((state) => state.posts);
@@ -16,12 +16,18 @@ const Explore = () => {
     }
     dispatch(getPosts());
   }, []);
+  // Filter all posts to only show posts of people you're following.
+  const followingPosts = allPosts.filter((post) =>
+    post.user.followers?.includes(user._id)
+  );
+
+  console.log(followingPosts);
 
   return (
     <div className='flex justify-center bg-red-200 space-around align-center'>
       <div className='items-center justify-center max-w-5xl grid-cols-1 px-4 m-auto mt-8'>
-        {allPosts &&
-          allPosts.map((post) => (
+        {followingPosts &&
+          followingPosts.map((post) => (
             <div key={post._id} className='m-1 bg-green-100 w-100'>
               <Post
                 ownPost={user?._id === post.user._id}
@@ -39,4 +45,4 @@ const Explore = () => {
     </div>
   );
 };
-export default Explore;
+export default Following;

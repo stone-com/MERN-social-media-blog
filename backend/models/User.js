@@ -27,9 +27,6 @@ const userSchema = new mongoose.Schema(
         ref: 'User',
       },
     ],
-    birthday: {
-      type: Date,
-    },
     city: {
       type: String,
     },
