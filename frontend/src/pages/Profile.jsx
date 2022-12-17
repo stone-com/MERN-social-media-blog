@@ -7,6 +7,8 @@ import Post from '../components/Post';
 import { getUserProfile } from '../features/profile/profileSlice';
 import { BsGenderFemale, BsGenderMale } from 'react-icons/bs';
 import { GiFemaleVampire } from 'react-icons/gi';
+import { FaLocationArrow } from 'react-icons/fa';
+import { FaBriefcase } from 'react-icons/fa';
 
 const Profile = () => {
   const { pathname } = useLocation();
@@ -163,13 +165,15 @@ const Profile = () => {
                       <i className='mr-2 text-lg text-gray-500 fas fa-map-marker-alt'></i>{' '}
                       {`Member since ${formattedCreatedDate}`}
                     </div>
-                    <div className='mt-0 mb-2 text-sm font-bold leading-normal text-gray-500 uppercase'>
-                      <i className='mr-2 text-lg text-gray-500 fas fa-map-marker-alt'></i>{' '}
-                      {city || 'City'}, {state || 'State'}
+                    <div className='flex justify-center mt-0 mb-2 space-x-2 text-sm font-bold leading-normal text-gray-500 uppercase '>
+                      <FaLocationArrow />
+                      <p>
+                        {city || 'City'}, {state || 'State'}
+                      </p>
                     </div>
-                    <div className='mt-10 mb-2 text-gray-700'>
-                      <i className='mr-2 text-lg text-gray-500 fas fa-briefcase'></i>
-                      {occupation || 'Occupation'}
+                    <div className='flex justify-center mt-10 mb-2 space-x-2 text-gray-700'>
+                      <FaBriefcase />
+                      <p>{occupation || 'Occupation'}</p>
                     </div>
                   </div>
                   <div className='py-10 mt-10 text-center border-t border-gray-300'>
