@@ -45,7 +45,7 @@ const Post = ({ title, body, createdAt, author, id, ownPost, authorId }) => {
   };
 
   return (
-    <div className='px-5 py-4 my-5 bg-green-200 shadow-xl  rounded-3xl'>
+    <div className='px-5 py-4 my-5 bg-green-200 shadow-xl rounded-3xl'>
       <div className='grid grid-cols-3'>
         <div className='flex col-span-1 mb-4 mr-3'>
           <img

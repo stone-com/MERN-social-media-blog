@@ -32,10 +32,10 @@ const Comment = ({ comment }) => {
     deleteComment(postId, commentId);
   };
   return (
-    <article className='p-6 mb-6 text-base bg-white rounded-lg dark:bg-gray-900'>
+    <article className='px-6 pb-6 mb-6 text-base bg-green-600 rounded-lg '>
       <footer className='flex items-center justify-between mb-2'>
         <div className='flex items-center'>
-          <p className='inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white'>
+          <p className='inline-flex items-center mr-3 text-sm text-white '>
             <img
               className='w-6 h-6 mr-2 rounded-full'
               src='https://flowbite.com/docs/images/people/profile-picture-2.jpg'
@@ -43,13 +43,13 @@ const Comment = ({ comment }) => {
             />
             {author.name}
           </p>
-          <p className='text-sm text-gray-600 dark:text-gray-400'>
+          <p className='text-sm text-white'>
             <time>{formattedDate}</time>
           </p>
         </div>
         {/* SHow cancel and save buttons if isEditable set to true */}
         {isEditable && (
-          <div className='flex'>
+          <div className='flex pt-3'>
             <button
               className='px-4 py-2 mx-1 mb-1 mr-1 text-xs font-bold text-white uppercase outline-none btn hover:shadow-md focus:outline-none'
               onClick={() => setIsEditable(false)}
@@ -66,7 +66,7 @@ const Comment = ({ comment }) => {
         )}
         {/* Only show delete/edit buttons if User Id matches comment user ID */}
         {user._id === author._id && !isEditable && (
-          <div className='flex'>
+          <div className='flex pt-3'>
             <button
               class='btn text-white  font-bold uppercase text-xs px-4 py-2  hover:shadow-md outline-none focus:outline-none mr-1 mb-1 mx-1'
               type='button'
@@ -85,7 +85,7 @@ const Comment = ({ comment }) => {
         )}
       </footer>
       {!isEditable ? (
-        <p className='text-gray-500 dark:text-gray-400'>{body}</p>
+        <p className='text-white'>{body}</p>
       ) : (
         <input
           type='text'
