@@ -1,4 +1,4 @@
-import { getPosts } from '../features/posts/postSlice';
+import postSlice, { getPosts } from '../features/posts/postSlice';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -31,10 +31,11 @@ const Explore = () => {
         allPosts.map((post) => (
           <div key={post._id} className='m-1 bg-green-100 w-100'>
             <Post
-              ownPost={user._id === post.user._id ? true : false}
+              ownPost={user?._id === post.user._id}
               title={post.title}
               body={post.body}
               author={post.user.name}
+              authorId={post.user._id}
               createdAt={post.createdAt}
               commentIds={post.comments}
               id={post._id}

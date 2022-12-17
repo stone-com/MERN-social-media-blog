@@ -5,8 +5,9 @@ import { GiCancel } from 'react-icons/gi';
 import { deletePost, editPost } from '../features/posts/postSlice';
 import { CommentDisplay } from '../components/CommentDisplay';
 import { CommentProvider } from '../features/comments/commentContext';
+import { Link } from 'react-router-dom';
 
-const Post = ({ title, body, createdAt, author, id, ownPost }) => {
+const Post = ({ title, body, createdAt, author, id, ownPost, authorId }) => {
   const [isEditable, setIsEditable] = useState(false);
   const [showComments, setShowComments] = useState(false);
 
@@ -54,7 +55,7 @@ const Post = ({ title, body, createdAt, author, id, ownPost }) => {
           />
           <div className='ml-2 mt-0.5'>
             <span className='block text-base font-medium leading-snug text-black dark:text-gray-100'>
-              {author}
+              <Link to={`/profile/${authorId}`}>{author}</Link>
             </span>
             <span className='block text-sm font-light leading-snug text-gray-500 dark:text-gray-400'>
               {formattedDate}

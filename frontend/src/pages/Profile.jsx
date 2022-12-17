@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useLocation, Link } from 'react-router-dom';
 import Post from '../components/Post';
 import { getUserProfile } from '../features/profile/profileSlice';
+import { BsGenderFemale, BsGenderMale } from 'react-icons/bs';
+import { GiFemaleVampire } from 'react-icons/gi';
 
 const Profile = () => {
   const { pathname } = useLocation();
@@ -23,10 +25,28 @@ const Profile = () => {
     followers,
     gender,
     occupation,
+    createdAt,
   } = currentProfile;
+
+  // Format the dates for birthday and createdAt
+  let birthdayDate = new Date(birthday);
+  const formattedBirthday = birthdayDate.toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  });
+
+  let createdDate = new Date(createdAt);
+  const formattedCreatedDate = createdDate.toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  });
+
   useEffect(() => {
     dispatch(getUserProfile(paramsId));
   }, [paramsId]);
+  console.log(currentProfile);
 
   return (
     <div className='container items-center justify-center max-w-5xl grid-cols-1 px-4 py-3 m-auto bg-blue-100'>
@@ -99,9 +119,20 @@ const Profile = () => {
                     </div>
                   </div>
                   <div className='mt-12 text-center'>
-                    <h3 className='mb-2 text-4xl font-semibold leading-normal text-gray-800'>
+                    <h3 className='flex justify-center mb-2 text-4xl font-semibold leading-normal text-gray-800'>
                       {currentProfile.name}
+                      {currentProfile.gender === 'male' ? (
+                        <BsGenderMale />
+                      ) : currentProfile.gender === 'female' ? (
+                        <BsGenderFemale />
+                      ) : currentProfile.gender === 'other' ? (
+                        <GiFemaleVampire />
+                      ) : null}
                     </h3>
+                    <div className='mt-0 mb-2 text-xs font-bold leading-normal text-gray-500 uppercase'>
+                      <i className='mr-2 text-lg text-gray-500 fas fa-map-marker-alt'></i>{' '}
+                      {`Member since ${formattedCreatedDate}`}
+                    </div>
                     <div className='mt-0 mb-2 text-sm font-bold leading-normal text-gray-500 uppercase'>
                       <i className='mr-2 text-lg text-gray-500 fas fa-map-marker-alt'></i>{' '}
                       {city || 'City'}, {state || 'State'}
@@ -131,7 +162,7 @@ const Profile = () => {
           currentProfile.posts.map((post) => (
             <div key={post._id} className='m-1 bg-green-100 w-100'>
               <Post
-                ownPost={true}
+                ownPost={user._id === currentProfile._id}
                 title={post.title}
                 body={post.body}
                 author={currentProfile.name}

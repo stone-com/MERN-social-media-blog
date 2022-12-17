@@ -95,7 +95,7 @@ export default function NavBar() {
                   activeLink === `/profile/` ? 'active' : ''
                 }`}
               >
-                <Link to={'/profile/' + user._id}>Profile</Link>
+                <Link to={'/profile/' + user?._id}>Profile</Link>
               </li>
               <li
                 className={`text-gray-600 hover:text-blue-600 ${
