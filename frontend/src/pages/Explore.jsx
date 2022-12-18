@@ -18,11 +18,11 @@ const Explore = () => {
   }, []);
 
   return (
-    <div className='flex justify-center h-screen bg-red-200 space-around align-center'>
+    <div className='flex justify-center h-full bg-green-200 space-around align-center'>
       <div className='items-center justify-center max-w-5xl grid-cols-1 px-4 m-auto mt-8'>
         {allPosts &&
           allPosts.map((post) => (
-            <div key={post._id} className='m-1 bg-green-100 w-100'>
+            <div key={post._id} className='m-1 w-100'>
               <Post
                 ownPost={user?._id === post.user._id}
                 title={post.title}

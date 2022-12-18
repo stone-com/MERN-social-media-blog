@@ -32,10 +32,10 @@ const Comment = ({ comment }) => {
     deleteComment(postId, commentId);
   };
   return (
-    <article className='px-6 pb-6 mb-6 text-base bg-green-600 rounded-lg '>
-      <footer className='flex items-center justify-between mb-2'>
+    <article className='relative px-6 pt-1 pb-6 mb-6 text-base bg-green-400 rounded-lg'>
+      <footer className='flex items-center justify-between mb-2 '>
         <div className='flex items-center'>
-          <p className='inline-flex items-center mr-3 text-sm text-white '>
+          <p className='inline-flex items-center mr-3 text-sm '>
             <img
               className='w-6 h-6 mr-2 rounded-full'
               src='https://flowbite.com/docs/images/people/profile-picture-2.jpg'
@@ -43,49 +43,14 @@ const Comment = ({ comment }) => {
             />
             {author.name}
           </p>
-          <p className='text-sm text-white'>
+          <p className='text-sm '>
             <time>{formattedDate}</time>
           </p>
         </div>
-        {/* SHow cancel and save buttons if isEditable set to true */}
-        {isEditable && (
-          <div className='flex pt-3'>
-            <button
-              className='px-4 py-2 mx-1 mb-1 mr-1 text-xs font-bold text-white uppercase outline-none btn hover:shadow-md focus:outline-none'
-              onClick={() => setIsEditable(false)}
-            >
-              <GiCancel />
-            </button>
-            <button
-              className='px-4 py-2 mx-1 mb-1 mr-1 text-xs font-bold text-white uppercase outline-none btn hover:shadow-md focus:outline-none'
-              onClick={() => onEditSubmit(post, _id, editedComment)}
-            >
-              <FaSave />
-            </button>
-          </div>
-        )}
-        {/* Only show delete/edit buttons if User Id matches comment user ID */}
-        {user._id === author._id && !isEditable && (
-          <div className='flex pt-3'>
-            <button
-              class='btn text-white  font-bold uppercase text-xs px-4 py-2  hover:shadow-md outline-none focus:outline-none mr-1 mb-1 mx-1'
-              type='button'
-              onClick={() => setIsEditable(!isEditable)}
-            >
-              <FaPen />
-            </button>
-            <button
-              onClick={() => deleteComment(post, _id)}
-              class='btn text-white  font-bold uppercase text-xs px-4 py-2  hover:shadow-md outline-none focus:outline-none mr-1 mb-1 mx-1'
-              type='button'
-            >
-              <AiFillDelete />
-            </button>
-          </div>
-        )}
       </footer>
+
       {!isEditable ? (
-        <p className='text-white'>{body}</p>
+        <p>{body}</p>
       ) : (
         <input
           type='text'
@@ -97,6 +62,44 @@ const Comment = ({ comment }) => {
           onChange={onChange}
         ></input>
       )}
+      <div className='flex items-center justify-end h-8 align-center'>
+        {/* SHow cancel and save buttons if isEditable set to true */}
+        {isEditable && (
+          <div className='flex flex-end'>
+            <button
+              className='px-4 py-2 mx-1 mb-1 mr-1 text-xs text-black bg-transparent border-none '
+              onClick={() => setIsEditable(false)}
+            >
+              <GiCancel />
+            </button>
+            <button
+              className='px-4 py-2 mx-1 mb-1 mr-1 text-black bg-transparent border-none'
+              onClick={() => onEditSubmit(post, _id, editedComment)}
+            >
+              <FaSave />
+            </button>
+          </div>
+        )}
+        {/* Only show delete/edit buttons if User Id matches comment user ID */}
+        {user._id === author._id && !isEditable && (
+          <div className='flex flex-end'>
+            <button
+              className='px-4 py-2 mx-1 mb-1 mr-1 text-black bg-transparent bg-green-400 border-none'
+              type='button'
+              onClick={() => setIsEditable(!isEditable)}
+            >
+              <FaPen />
+            </button>
+            <button
+              onClick={() => deleteComment(post, _id)}
+              className='px-4 py-2 mx-1 mb-1 mr-1 text-black bg-transparent bg-green-400 border-none'
+              type='button'
+            >
+              <AiFillDelete />
+            </button>
+          </div>
+        )}
+      </div>
     </article>
   );
 };

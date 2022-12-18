@@ -24,14 +24,14 @@ const CommentForm = ({ postId }) => {
 
   return (
     <form className='mb-6' onSubmit={onSubmit}>
-      <div className='px-4 py-2 mb-4 bg-green-600 border border-gray-200 rounded-lg rounded-t-lg'>
+      <div className='px-4 py-2 mb-4 bg-green-400 border border-gray-200 rounded-lg rounded-t-lg'>
         <label for='comment' className='sr-only'>
           Your comment
         </label>
         <textarea
           id='comment'
           rows='4'
-          className='w-full px-0 text-sm placeholder-white bg-green-600 border-0 text-grey-200 focus:ring-0 focus:outline-none'
+          className='w-full px-0 text-sm placeholder-white bg-green-400 border-0 text-grey-200 focus:ring-0 focus:outline-none'
           placeholder='Write a comment...'
           value={commentText}
           onChange={onChange}
@@ -42,11 +42,11 @@ const CommentForm = ({ postId }) => {
         {' '}
         <button
           type='submit'
-          className='self-center px-4 py-2 mb-1 text-xs font-bold text-white uppercase bg-pink-500 rounded shadow outline-none active:bg-pink-600 hover:shadow-md focus:outline-none sm:mr-2'
+          className='text-black bg-green-400 border-2 border-green-600 btn hover:bg-green-600'
         >
           Post comment
         </button>
-        <p className='inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800'>
+        <p className='inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-black bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800'>
           {comments.length === 0
             ? 'No comments yet'
             : comments.length === 1

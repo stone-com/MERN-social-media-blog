@@ -11,8 +11,8 @@ export const CommentDisplay = (id) => {
 
   // console.log(data);
   return (
-    <section className='py-8 mt-3 bg-green-400 border-4 border-green-600 rounded-xl lg:py-16'>
-      <div className='max-w-4xl px-4 mx-auto'>
+    <section className='py-8 mt-1 bg-green-200 rounded-xl'>
+      <div className=''>
         <CommentForm postId={id} />
         {comments &&
           comments

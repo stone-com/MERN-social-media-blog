@@ -54,10 +54,10 @@ const Profile = () => {
   };
 
   return (
-    <div className='flex items-center justify-center w-full grid-cols-1 bg-red-200 space-around align-center'>
+    <div className='flex items-center justify-center w-full grid-cols-1 bg-green-200 space-around align-center'>
       <div className='w-full mt-10 rounded-md sm:w-4/5'>
         {currentProfile && (
-          <div className='flex flex-col w-full min-w-0 pt-2 mb-6 break-words bg-green-200 rounded-lg shadow-xl '>
+          <div className='flex flex-col w-full min-w-0 pt-2 mb-6 break-words bg-green-200 rounded-lg sm:shadow-xl sm:border-4 sm:border-green-600 sm:rounded-2xl'>
             <div className='px-6'>
               <div className='flex flex-wrap justify-center'>
                 <div className='flex justify-center w-full px-4 rounded lg:w-3/12 lg:order-2'>
@@ -74,7 +74,7 @@ const Profile = () => {
                     {user._id === currentProfile._id && (
                       <Link to='/editprofile'>
                         <button
-                          className='self-center px-4 py-2 mb-1 text-xs font-bold text-white uppercase bg-pink-500 rounded shadow outline-none active:bg-pink-600 hover:shadow-md focus:outline-none sm:mr-2'
+                          className='text-black bg-green-400 border-2 border-green-600 btn hover:bg-green-600'
                           type='button'
                           style={{ transition: 'all .15s ease' }}
                           onClick={() => console.log('click!')}
@@ -88,7 +88,7 @@ const Profile = () => {
                     currentProfile._id ? null : currentProfile.followers &&
                       !currentProfile?.followers.includes(user._id) ? (
                       <button
-                        className='self-center px-4 py-2 mb-1 text-xs font-bold text-white uppercase bg-pink-500 rounded shadow outline-none active:bg-pink-600 hover:shadow-md focus:outline-none sm:mr-2'
+                        className='text-black bg-green-400 border-2 border-green-600 btn hover:bg-green-600'
                         type='button'
                         style={{ transition: 'all .15s ease' }}
                         onClick={follow}
@@ -97,7 +97,7 @@ const Profile = () => {
                       </button>
                     ) : (
                       <button
-                        className='self-center px-4 py-2 mb-1 text-xs font-bold text-white uppercase bg-pink-500 rounded shadow outline-none active:bg-pink-600 hover:shadow-md focus:outline-none sm:mr-2'
+                        className='text-black bg-green-400 border-2 border-green-600 btn hover:bg-green-600'
                         type='button'
                         style={{ transition: 'all .15s ease' }}
                         onClick={unFollow}
@@ -159,7 +159,7 @@ const Profile = () => {
               <div className='py-10 mt-10 text-center border-t border-gray-300'>
                 <div className='flex flex-wrap justify-center'>
                   <div className='w-full px-4 lg:w-9/12'>
-                    <p className='mb-4 text-lg leading-relaxed text-gray-800'>
+                    <p className='mb-4 text-lg leading-relaxed text-gray-800 bg-green-400 border-4 border-green-600 rounded-2xl'>
                       {bio || 'Bio'}
                     </p>
                   </div>
@@ -170,17 +170,17 @@ const Profile = () => {
         )}
         <div className='flex justify-around'>
           <button
-            className='btn'
+            className='text-black bg-green-400 border-2 border-green-600 btn hover:bg-green-600'
             onClick={() => setShowPostForm(!showPostForm)}
           >
-            Create New Post
+            {showPostForm ? 'Hide Post Form' : 'New Post'}
           </button>
         </div>
         {showPostForm && <NewPost />}
         <div className='container items-center justify-center w-full max-w-5xl grid-cols-1 px-4 m-auto mt-8'>
           {currentProfile?.posts &&
             currentProfile.posts.map((post) => (
-              <div key={post._id} className='m-1 bg-green-100 w-100'>
+              <div key={post._id} className='m-1 w-100'>
                 <Post
                   ownPost={user._id === currentProfile._id}
                   title={post.title}

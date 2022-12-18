@@ -41,16 +41,13 @@ const NewPost = () => {
 
   return (
     <>
-      <div className='m-5 text-2xl font-bold text-center text-gray-800 heading'>
-        New Post
-      </div>
       <form
         enctype='multipart/form-data'
         onSubmit={handleSubmit}
-        className='flex flex-col w-10/12 max-w-2xl p-4 mx-auto text-gray-800 border border-gray-300 shadow-lg editor'
+        className='flex flex-col w-10/12 max-w-2xl p-4 mx-auto mt-3 text-gray-800 bg-green-200 border-4 border-green-600 shadow-lg rounded-2xl'
       >
         <input
-          className='p-2 mb-4 bg-gray-100 border border-gray-300 outline-none title'
+          className='p-2 mb-4 placeholder-white bg-green-400 border border-white outline-lg none rounded- title-lg'
           placeholder='Title'
           type='text'
           name='title'
@@ -58,7 +55,7 @@ const NewPost = () => {
           onChange={handleChange}
         />
         <textarea
-          className='p-3 bg-gray-100 border border-gray-300 outline-none description sec h-60'
+          className='p-3 placeholder-white bg-green-400 border border-white rounded-lg outline-none description sec h-60'
           placeholder='Describe everything about this post here'
           name='body'
           value={body}
@@ -71,12 +68,15 @@ const NewPost = () => {
           </div>
         </div>
         <div className='flex buttons'>
-          <button className='p-1 px-4 ml-auto font-semibold text-gray-500 border border-gray-300 cursor-pointer btn'>
+          <button
+            type='button'
+            className='ml-auto text-black bg-green-400 border-2 border-green-600 btn hover:bg-green-600'
+          >
             Cancel
           </button>
           <button
             type='submit'
-            className='p-1 px-4 ml-2 font-semibold text-gray-200 bg-indigo-500 border border-indigo-500 cursor-pointer btn'
+            className='ml-2 text-black bg-green-400 border-2 border-green-600 btn hover:bg-green-600'
           >
             Post
           </button>

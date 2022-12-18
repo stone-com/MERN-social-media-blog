@@ -46,7 +46,7 @@ const Post = ({ title, body, createdAt, author, id, ownPost, authorId }) => {
   };
 
   return (
-    <div className='px-5 py-4 my-5 bg-green-200 shadow-xl rounded-3xl'>
+    <div className='px-5 py-4 my-5 bg-green-200 border-4 border-green-600 shadow-xl outline-none rounded-3xl'>
       <div className='grid grid-cols-3'>
         <div className='flex col-span-1 mb-4 mr-3'>
           <img
@@ -111,7 +111,7 @@ const Post = ({ title, body, createdAt, author, id, ownPost, authorId }) => {
           {isEditable && (
             <>
               <button
-                className='mx-1 bg-red-500 btn'
+                className='mx-1 text-black bg-green-400 border-2 border-green-600 btn hover:bg-green-600'
                 onClick={() => {
                   setIsEditable(!isEditable);
                   setEditState((prev) => ({
@@ -123,7 +123,7 @@ const Post = ({ title, body, createdAt, author, id, ownPost, authorId }) => {
               >
                 <GiCancel />
               </button>
-              <button className='mx-1 bg-green-600 btn'>
+              <button className='mx-1 text-black bg-green-400 border-2 border-green-600 btn hover:bg-green-600'>
                 <FaSave onClick={onEditSubmit} />
               </button>
             </>
@@ -133,7 +133,7 @@ const Post = ({ title, body, createdAt, author, id, ownPost, authorId }) => {
           {ownPost && !isEditable && (
             <>
               <button
-                className='mx-1 bg-blue-500 btn'
+                className='mx-1 text-black bg-green-400 border-2 border-green-600 btn hover:bg-green-600'
                 onClick={() => {
                   setIsEditable(!isEditable);
                 }}
@@ -141,7 +141,7 @@ const Post = ({ title, body, createdAt, author, id, ownPost, authorId }) => {
                 <FaPen />
               </button>
               <button
-                className='mx-1 bg-red-600 btn'
+                className='mx-1 text-black bg-green-400 border-2 border-green-600 btn hover:bg-green-600'
                 onClick={() => dispatch(deletePost(id))}
               >
                 <FaTrash />
