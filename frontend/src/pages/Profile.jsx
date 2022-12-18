@@ -55,7 +55,7 @@ const Profile = () => {
 
   return (
     <div className='flex items-center justify-center w-full grid-cols-1 bg-green-200 space-around align-center'>
-      <div className='w-full mt-10 rounded-md sm:w-4/5'>
+      <div className='w-full mt-10 rounded-md sm:mt-5 sm:w-4/5'>
         {currentProfile && (
           <div className='flex flex-col w-full min-w-0 pt-2 mb-6 break-words bg-green-200 rounded-lg sm:shadow-xl sm:border-4 sm:border-green-600 sm:rounded-2xl'>
             <div className='px-6'>
@@ -158,8 +158,8 @@ const Profile = () => {
               </div>
               <div className='py-10 mt-10 text-center border-t border-gray-300'>
                 <div className='flex flex-wrap justify-center'>
-                  <div className='w-full px-4 lg:w-9/12'>
-                    <p className='mb-4 text-lg leading-relaxed text-gray-800 bg-green-400 border-4 border-green-600 rounded-2xl'>
+                  <div className='flex justify-center w-full px-4 lg:w-9/12'>
+                    <p className='px-3 mb-4 text-lg leading-relaxed text-center text-gray-800 bg-green-400 border-4 border-green-600 rounded-2xl w-fit'>
                       {bio || 'Bio'}
                     </p>
                   </div>

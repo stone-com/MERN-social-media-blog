@@ -36,11 +36,12 @@ const EditProfile = () => {
 
   return (
     <div className='flex justify-center h-screen bg-green-200 space-around align-center'>
-      <div className='w-full mt-3 10 sm:w-3/6'>
+      <div className='w-full mt-3 10 sm:w-3/6 sm:mt-10'>
         <form
           onSubmit={onSubmit}
           className='px-8 pt-6 pb-8 mb-4 bg-green-200 sm:shadow-md sm:border-green-600 sm:border-4 rounded-2xl'
         >
+          <h1 className='text-4xl text-center'>Edit Your Profile</h1>
           <label
             htmlFor='city'
             className='block mb-2 text-sm font-bold text-gray-700'
