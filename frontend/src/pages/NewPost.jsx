@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { createPost, reset } from '../features/posts/postSlice';
+import { getUserProfile } from '../features/profile/profileSlice';
 
 const NewPost = () => {
   const [formData, setFormData] = useState({
@@ -36,7 +37,6 @@ const NewPost = () => {
     };
     dispatch(createPost(postData));
     setFormData({ title: '', body: '' });
-    navigate('/explore');
   };
 
   return (

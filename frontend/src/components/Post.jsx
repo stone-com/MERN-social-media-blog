@@ -6,7 +6,6 @@ import { deletePost, editPost } from '../features/posts/postSlice';
 import { CommentDisplay } from '../components/CommentDisplay';
 import { CommentProvider } from '../features/comments/commentContext';
 import { Link } from 'react-router-dom';
-import CommentForm from './CommentForm';
 
 const Post = ({ title, body, createdAt, author, id, ownPost, authorId }) => {
   const [isEditable, setIsEditable] = useState(false);
@@ -72,7 +71,7 @@ const Post = ({ title, body, createdAt, author, id, ownPost, authorId }) => {
           <input
             type='text'
             name='editTitle'
-            class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 '
+            class='bg-green-400 border border-white text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 '
             placeholder={title}
             required
             value={editTitle}
@@ -87,7 +86,7 @@ const Post = ({ title, body, createdAt, author, id, ownPost, authorId }) => {
         <input
           type='text'
           name='editBody'
-          class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  mt-5'
+          class='bg-green-400 border border-white text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  mt-5'
           placeholder={body}
           value={editBody}
           onChange={onChange}
@@ -151,7 +150,7 @@ const Post = ({ title, body, createdAt, author, id, ownPost, authorId }) => {
         </div>
       </div>
       {isEditable && (
-        <div className='flex justify-center text-white'>
+        <div className='flex justify-center text-black'>
           Content is now editable
         </div>
       )}
