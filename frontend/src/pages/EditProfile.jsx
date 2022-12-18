@@ -17,8 +17,7 @@ const EditProfile = () => {
     dispatch(getUserProfile(user._id));
   }, []);
 
-  const { birthday, city, state, gender, occupation, bio, profilePic } =
-    formData;
+  const { city, state, gender, occupation, bio, profilePic } = formData;
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -36,11 +35,11 @@ const EditProfile = () => {
   };
 
   return (
-    <div className='flex justify-center bg-red-200 space-around align-center'>
-      <div className='w-full mt-10 rounded-md sm:w-3/6'>
+    <div className='flex justify-center h-screen bg-green-200 space-around align-center'>
+      <div className='w-full mt-3 10 sm:w-3/6'>
         <form
           onSubmit={onSubmit}
-          className='px-8 pt-6 pb-8 mb-4 bg-green-200 rounded-md shadow-md'
+          className='px-8 pt-6 pb-8 mb-4 bg-green-200 sm:shadow-md sm:border-green-600 sm:border-4 rounded-2xl'
         >
           <label
             htmlFor='city'
@@ -53,7 +52,7 @@ const EditProfile = () => {
             name='city'
             value={city}
             onChange={onChange}
-            className='w-full p-2 mb-4 bg-gray-100 border border-gray-300 outline-none title'
+            className='w-full p-2 mb-4 placeholder-white bg-green-400 border border-white outline-lg none rounded- title-lg'
           />
           <br />
           <label
@@ -67,7 +66,7 @@ const EditProfile = () => {
             name='state'
             value={state}
             onChange={onChange}
-            className='w-full p-2 mb-4 bg-gray-100 border border-gray-300 outline-none title'
+            className='w-full p-2 mb-4 placeholder-white bg-green-400 border border-white outline-none title outline-lg none rounded- title-lg'
           />
           <br />
           <label
@@ -80,7 +79,7 @@ const EditProfile = () => {
             name='gender'
             value={gender}
             onChange={onChange}
-            className='w-full p-2 mb-4 bg-gray-100 border border-gray-300 outline-none title'
+            className='w-full p-2 mb-4 placeholder-white bg-green-400 border border-white outline-none title outline-lg none rounded- title-lg'
           >
             <option value='male'>Male</option>
             <option value='female'>Female</option>
@@ -98,7 +97,7 @@ const EditProfile = () => {
             name='occupation'
             value={occupation}
             onChange={onChange}
-            className='w-full p-2 mb-4 bg-gray-100 border border-gray-300 outline-none title'
+            className='w-full p-2 mb-4 placeholder-white bg-green-400 border border-white outline-none title outline-lg none rounded- title-lg'
           />
           <br />
           <label
@@ -111,7 +110,7 @@ const EditProfile = () => {
             name='bio'
             value={bio}
             onChange={onChange}
-            className='w-full p-2 mb-4 bg-gray-100 border border-gray-300 outline-none title'
+            className='w-full p-2 mb-4 placeholder-white bg-green-400 border border-white outline-none title none rounded- title-lg'
           />
           <br />
           <label
@@ -125,15 +124,24 @@ const EditProfile = () => {
             name='profilePic'
             accept='image/*'
             onChange={onChange}
-            className='w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
+            className='w-full px-3 py-2 mb-3 leading-tight text-gray-700 border border-green-600 rounded shadow appearance-none focus:outline-none focus:shadow-outline'
           />
           <br />
-          <button
-            type='submit'
-            className='self-center px-4 py-2 mt-3 mb-1 text-xs font-bold text-white uppercase bg-pink-500 rounded shadow outline-none active:bg-pink-600 hover:shadow-md focus:outline-none sm:mr-2'
-          >
-            Submit
-          </button>
+          <div className='flex justify-between mt-2'>
+            <button
+              type='submit'
+              className='ml-2 text-black bg-green-400 border-2 border-green-600 btn hover:bg-green-600'
+            >
+              Submit
+            </button>
+            <button
+              type='button'
+              className='ml-2 text-black bg-green-400 border-2 border-green-600 btn hover:bg-green-600'
+              onClick={() => navigate(-1)}
+            >
+              Cancel
+            </button>
+          </div>
         </form>
       </div>
     </div>
