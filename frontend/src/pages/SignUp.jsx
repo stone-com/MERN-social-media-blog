@@ -42,16 +42,16 @@ const SignUp = () => {
   };
 
   return (
-    <div class='bg-grey-lighter min-h-screen flex flex-col'>
-      <div class='container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2'>
+    <div class='min-h-screen flex flex-col'>
+      <div class='container max-w-sm mx-auto flex-1 flex flex-col items-center sm:justify-center px-2'>
         <form
           onSubmit={handleSubmit}
-          class='bg-white px-6 py-8 rounded shadow-md text-black w-full'
+          className='w-full px-6 py-6 text-black bg-green-200 border-green-600 rounded-2xl sm:shadow-md sm: sm:border-4 '
         >
           <h1 class='mb-8 text-3xl text-center'>Sign up</h1>
           <input
             type='text'
-            class='block border border-grey-light w-full p-3 rounded mb-4'
+            className='w-full p-2 mb-4 placeholder-white bg-green-400 border border-white outline-lg none rounded- title-lg'
             name='name'
             placeholder='Full Name'
             value={name}
@@ -60,7 +60,7 @@ const SignUp = () => {
 
           <input
             type='email'
-            class='block border border-grey-light w-full p-3 rounded mb-4'
+            className='w-full p-2 mb-4 placeholder-white bg-green-400 border border-white outline-lg none rounded- title-lg'
             name='email'
             placeholder='Email'
             value={email}
@@ -69,7 +69,7 @@ const SignUp = () => {
 
           <input
             type='password'
-            class='block border border-grey-light w-full p-3 rounded mb-4'
+            className='w-full p-2 mb-4 placeholder-white bg-green-400 border border-white outline-lg none rounded- title-lg'
             name='password'
             placeholder='Password'
             value={password}
@@ -77,7 +77,7 @@ const SignUp = () => {
           />
           <input
             type='password'
-            class='block border border-grey-light w-full p-3 rounded mb-4'
+            className='w-full p-2 mb-4 placeholder-white bg-green-400 border border-white outline-lg none rounded- title-lg'
             name='confirmPassword'
             placeholder='Confirm Password'
             value={confirmPassword}
@@ -86,7 +86,7 @@ const SignUp = () => {
 
           <button
             type='submit'
-            class='w-full text-center py-3 rounded bg-green-500 text-white hover:bg-green-dark focus:outline-none my-1'
+            className='w-full text-black bg-green-400 border-2 border-white btn hover:bg-green-600'
           >
             Create Account
           </button>
@@ -94,12 +94,12 @@ const SignUp = () => {
 
         <div class='text-grey-dark mt-6'>
           <Link to='/login'>
-            Already have an account?
+            Already have an account? 
             <a
               class='no-underline border-b border-blue text-blue'
               href='/login/'
             >
-              Log in
+               Log in
             </a>
           </Link>
         </div>
