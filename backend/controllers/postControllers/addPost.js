@@ -18,7 +18,6 @@ const addPost = asyncHandler(async (req, res) => {
 
   if (post) {
     await post.populate('user');
-    console.log(post);
     res.status(200).json(post);
   } else {
     res.status(400);

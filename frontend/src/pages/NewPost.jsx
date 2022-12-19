@@ -29,17 +29,17 @@ const NewPost = ({ setShowPostForm }) => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const postData = {
       ...formData,
       user,
     };
-    dispatch(createPost(postData));
-    dispatch(getPosts());
+    await dispatch(createPost(postData));
+    await dispatch(getPosts());
+    await dispatch(getUserProfile(user._id));
     setFormData({ title: '', body: '' });
     setShowPostForm(false);
-    navigate('/');
   };
 
   return (

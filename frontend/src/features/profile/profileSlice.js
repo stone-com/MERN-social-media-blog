@@ -28,7 +28,9 @@ export const getUserProfile = createAsyncThunk(
 const profileSlice = createSlice({
   name: 'profile',
   initialState,
-  reducers: {},
+  reducers: {
+    // addPostToUserProfile: state => state.currentProfile.posts.unshift()
+  },
   extraReducers: (builder) => {
     builder
       // Get all posts

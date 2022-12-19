@@ -34,7 +34,7 @@ const Profile = () => {
 
   useEffect(() => {
     dispatch(getUserProfile(paramsId));
-  }, [paramsId]);
+  }, [paramsId, currentProfile]);
 
   const follow = async () => {
     const response = await axios.put(
@@ -190,7 +190,7 @@ const Profile = () => {
                   id={post._id}
                 />
               </div>
-            ))}
+            )).reverse()}
         </div>
       </div>
     </div>
