@@ -17,7 +17,7 @@ const EditProfile = () => {
     dispatch(getUserProfile(user._id));
   }, []);
 
-  const { city, state, gender, occupation, bio, profilePic } = formData;
+  const { city, state, occupation, bio, profilePic } = formData;
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -69,23 +69,6 @@ const EditProfile = () => {
             onChange={onChange}
             className='w-full p-2 mb-4 placeholder-white bg-green-400 border border-white outline-none title outline-lg none rounded- title-lg'
           />
-          <br />
-          <label
-            htmlFor='gender'
-            className='block mb-2 text-sm font-bold text-gray-700'
-          >
-            Gender:
-          </label>
-          <select
-            name='gender'
-            value={gender}
-            onChange={onChange}
-            className='w-full p-2 mb-4 placeholder-white bg-green-400 border border-white outline-none title outline-lg none rounded- title-lg'
-          >
-            <option value='male'>Male</option>
-            <option value='female'>Female</option>
-            <option value='other'>Other</option>
-          </select>
           <br />
           <label
             htmlFor='occupation'

@@ -36,9 +36,6 @@ const userSchema = new mongoose.Schema(
     profilePic: {
       type: String,
     },
-    gender: {
-      type: String,
-    },
     occupation: {
       type: String,
     },

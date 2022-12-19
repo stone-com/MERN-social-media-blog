@@ -18,7 +18,7 @@ const Explore = () => {
     }
     dispatch(getPosts());
   }, []);
-  console.log(allPosts);
+
   return (
     <>
       <div className='flex justify-around mt-8'>
