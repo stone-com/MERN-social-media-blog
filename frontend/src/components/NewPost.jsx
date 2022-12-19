@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { createPost, getPosts, reset } from '../features/posts/postSlice';
 import { getUserProfile } from '../features/profile/profileSlice';
 
@@ -11,6 +11,8 @@ const NewPost = ({ setShowPostForm }) => {
   });
   const { title, body } = formData;
   const { user } = useSelector((state) => state.auth);
+  const location = useLocation();
+  const pathName = location.pathname.split('/')[2] || location.pathname;
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -36,10 +38,15 @@ const NewPost = ({ setShowPostForm }) => {
       user,
     };
     await dispatch(createPost(postData));
-    await dispatch(getPosts());
-    await dispatch(getUserProfile(user._id));
-    setFormData({ title: '', body: '' });
     setShowPostForm(false);
+    if (pathName === '/explore') {
+      await dispatch(getPosts());
+    } else {
+      await dispatch(getUserProfile(user._id));
+    }
+
+    setFormData({ title: '', body: '' });
+   
   };
 
   return (

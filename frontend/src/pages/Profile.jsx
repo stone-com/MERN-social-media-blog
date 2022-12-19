@@ -5,8 +5,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
 import Post from '../components/Post';
 import { getUserProfile } from '../features/profile/profileSlice';
-import { BsGenderFemale, BsGenderMale } from 'react-icons/bs';
-import { GiFemaleVampire } from 'react-icons/gi';
 import { FaLocationArrow } from 'react-icons/fa';
 import { FaBriefcase } from 'react-icons/fa';
 import NewPost from '../components/NewPost';
@@ -134,13 +132,6 @@ const Profile = () => {
               <div className='p-3 mt-12 text-center bg-green-400 border-4 border-green-600 border-solid rounded-2xl'>
                 <h3 className='flex justify-center mb-2 text-4xl font-semibold leading-normal text-gray-800'>
                   {currentProfile.name}
-                  {currentProfile.gender === 'male' ? (
-                    <BsGenderMale />
-                  ) : currentProfile.gender === 'female' ? (
-                    <BsGenderFemale />
-                  ) : currentProfile.gender === 'other' ? (
-                    <GiFemaleVampire />
-                  ) : null}
                 </h3>
                 <div className='mt-0 mb-2 text-xs font-bold leading-normal text-gray-500 uppercase'>
                   <i className='mr-2 text-lg text-gray-500 fas fa-map-marker-alt'></i>{' '}
