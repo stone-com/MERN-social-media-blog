@@ -17,13 +17,9 @@ const addPost = asyncHandler(async (req, res) => {
   });
 
   if (post) {
-    res.status(200).json({
-      _id: post._id,
-      user: post.user,
-      title: post.title,
-      body: post.body,
-      comments: post.comments,
-    });
+    await post.populate('user');
+    console.log(post);
+    res.status(200).json(post);
   } else {
     res.status(400);
     throw new Error('Could not create post');

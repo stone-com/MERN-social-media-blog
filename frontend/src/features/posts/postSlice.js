@@ -100,7 +100,11 @@ const postSlice = createSlice({
       .addCase(createPost.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.allPosts.unshift(action.payload);
+        state.allPosts.unshift({
+          ...action.payload,
+          author: action.payload.user.name,
+          authorId: action.payload.user._id,
+        });
       })
       .addCase(createPost.rejected, (state, action) => {
         state.isLoading = false;

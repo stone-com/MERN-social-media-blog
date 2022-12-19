@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { createPost, reset } from '../features/posts/postSlice';
+import { createPost, getPosts, reset } from '../features/posts/postSlice';
 import { getUserProfile } from '../features/profile/profileSlice';
 
-const NewPost = () => {
+const NewPost = ({ setShowPostForm }) => {
   const [formData, setFormData] = useState({
     title: '',
     body: '',
@@ -36,13 +36,16 @@ const NewPost = () => {
       user,
     };
     dispatch(createPost(postData));
+    dispatch(getPosts());
     setFormData({ title: '', body: '' });
+    setShowPostForm(false);
+    navigate('/');
   };
 
   return (
     <>
       <form
-        enctype='multipart/form-data'
+        encType='multipart/form-data'
         onSubmit={handleSubmit}
         className='flex flex-col w-10/12 max-w-2xl p-4 mx-auto mt-4 text-gray-800 bg-green-200 border-4 border-green-600 shadow-lg rounded-2xl'
       >
@@ -71,6 +74,7 @@ const NewPost = () => {
           <button
             type='button'
             className='ml-auto text-black bg-green-400 border-2 border-green-600 btn hover:bg-green-600'
+            onClick={() => setShowPostForm(false)}
           >
             Cancel
           </button>

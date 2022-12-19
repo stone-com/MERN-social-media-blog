@@ -35,7 +35,6 @@ const Profile = () => {
   useEffect(() => {
     dispatch(getUserProfile(paramsId));
   }, [paramsId]);
-  console.log(currentProfile);
 
   const follow = async () => {
     const response = await axios.put(
@@ -176,7 +175,7 @@ const Profile = () => {
             {showPostForm ? 'Hide Post Form' : 'New Post'}
           </button>
         </div>
-        {showPostForm && <NewPost />}
+        {showPostForm && <NewPost setShowPostForm={setShowPostForm} />}
         <div className='container items-center justify-center w-full max-w-5xl grid-cols-1 px-4 m-auto mt-8'>
           {currentProfile?.posts &&
             currentProfile.posts.map((post) => (
