@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Post from '../components/Post';
-import NewPost from './NewPost';
+import NewPost from '../components/NewPost';
 
 const Explore = () => {
   const dispatch = useDispatch();

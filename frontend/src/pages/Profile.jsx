@@ -9,7 +9,7 @@ import { BsGenderFemale, BsGenderMale } from 'react-icons/bs';
 import { GiFemaleVampire } from 'react-icons/gi';
 import { FaLocationArrow } from 'react-icons/fa';
 import { FaBriefcase } from 'react-icons/fa';
-import NewPost from './NewPost';
+import NewPost from '../components/NewPost';
 
 const Profile = () => {
   const { pathname } = useLocation();
@@ -167,30 +167,34 @@ const Profile = () => {
             </div>
           </div>
         )}
-        <div className='flex justify-around'>
-          <button
-            className='text-black bg-green-400 border-2 border-green-600 btn hover:bg-green-600'
-            onClick={() => setShowPostForm(!showPostForm)}
-          >
-            {showPostForm ? 'Hide Post Form' : 'New Post'}
-          </button>
-        </div>
+        {user._id === paramsId && (
+          <div className='flex justify-around'>
+            <button
+              className='text-black bg-green-400 border-2 border-green-600 btn hover:bg-green-600'
+              onClick={() => setShowPostForm(!showPostForm)}
+            >
+              {showPostForm ? 'Hide Post Form' : 'New Post'}
+            </button>
+          </div>
+        )}
         {showPostForm && <NewPost setShowPostForm={setShowPostForm} />}
         <div className='container items-center justify-center w-full max-w-5xl grid-cols-1 px-4 m-auto mt-8'>
           {currentProfile?.posts &&
-            currentProfile.posts.map((post) => (
-              <div key={post._id} className='m-1 w-100'>
-                <Post
-                  ownPost={user._id === currentProfile._id}
-                  title={post.title}
-                  body={post.body}
-                  author={currentProfile.name}
-                  createdAt={post.createdAt}
-                  commentIds={post.comments}
-                  id={post._id}
-                />
-              </div>
-            )).reverse()}
+            currentProfile.posts
+              .map((post) => (
+                <div key={post._id} className='m-1 w-100'>
+                  <Post
+                    ownPost={user._id === currentProfile._id}
+                    title={post.title}
+                    body={post.body}
+                    author={currentProfile.name}
+                    createdAt={post.createdAt}
+                    commentIds={post.comments}
+                    id={post._id}
+                  />
+                </div>
+              ))
+              .reverse()}
         </div>
       </div>
     </div>
