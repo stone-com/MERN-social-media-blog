@@ -19,7 +19,6 @@ function App() {
           <Route path='/' element={<Explore />} />
           <Route path='/register' element={<SignUp />} />
           <Route path='/login' element={<Login />} />
-          <Route path='/newPost' element={<NewPost />} />
           <Route path='/explore' element={<Explore />} />
           <Route path='/following' element={<Following />} />
           <Route path='/profile/:id' element={<Profile />} />

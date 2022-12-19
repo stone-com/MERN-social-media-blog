@@ -90,20 +90,15 @@ export default function NavBar() {
               >
                 <Link to='/following'>Following</Link>
               </li>
-              <li
-                className={`text-gray-600 hover:text-blue-600 ${
-                  activeLink === `/profile/` ? 'active' : ''
-                }`}
-              >
-                <Link to={'/profile/' + user?._id}>Profile</Link>
-              </li>
-              <li
-                className={`text-gray-600 hover:text-blue-600 ${
-                  activeLink === '/newPost' ? 'active' : ''
-                }`}
-              >
-                <Link to='/newPost'>New Post</Link>
-              </li>
+              {user !== null && (
+                <li
+                  className={`text-gray-600 hover:text-blue-600 ${
+                    activeLink === `/profile/` ? 'active' : ''
+                  }`}
+                >
+                  <Link to={'/profile/' + user?._id}>Profile</Link>
+                </li>
+              )}
               <li className={`text-gray-600 hover:text-blue-600`}>
                 <button onClick={onLogout}>Log Out</button>
               </li>
