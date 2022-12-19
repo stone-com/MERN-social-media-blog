@@ -54,8 +54,8 @@ const Profile = () => {
   };
 
   return (
-    <div className='flex items-center justify-center w-full grid-cols-1 bg-green-200 space-around align-center'>
-      <div className='w-full mt-10 rounded-md sm:mt-5 sm:w-4/5'>
+    <div className='flex items-center justify-center w-full min-h-screen grid-cols-1 bg-green-200 space-around align-center'>
+      <div className='w-full mt-5 rounded-md sm:mt-2 sm:w-4/5'>
         {currentProfile && (
           <div className='flex flex-col w-full min-w-0 pt-2 mb-6 break-words bg-green-200 rounded-lg sm:shadow-xl sm:border-4 sm:border-green-600 sm:rounded-2xl'>
             <div className='px-6'>

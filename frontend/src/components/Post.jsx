@@ -7,10 +7,18 @@ import { CommentDisplay } from '../components/CommentDisplay';
 import { CommentProvider } from '../features/comments/commentContext';
 import { Link } from 'react-router-dom';
 
-const Post = ({ title, body, createdAt, author, id, ownPost, authorId }) => {
+const Post = ({
+  title,
+  body,
+  createdAt,
+  author,
+  id,
+  ownPost,
+  authorId,
+  commentIds,
+}) => {
   const [isEditable, setIsEditable] = useState(false);
   const [showComments, setShowComments] = useState(false);
-
   const [editState, setEditState] = useState({
     editTitle: title,
     editBody: body,

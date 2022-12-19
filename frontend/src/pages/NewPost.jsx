@@ -44,7 +44,7 @@ const NewPost = () => {
       <form
         enctype='multipart/form-data'
         onSubmit={handleSubmit}
-        className='flex flex-col w-10/12 max-w-2xl p-4 mx-auto mt-3 text-gray-800 bg-green-200 border-4 border-green-600 shadow-lg rounded-2xl'
+        className='flex flex-col w-10/12 max-w-2xl p-4 mx-auto mt-4 text-gray-800 bg-green-200 border-4 border-green-600 shadow-lg rounded-2xl'
       >
         <input
           className='p-2 mb-4 placeholder-white bg-green-400 border border-white outline-lg none rounded- title-lg'

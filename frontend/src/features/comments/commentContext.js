@@ -7,6 +7,7 @@ export const CommentProvider = ({ children }) => {
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  
 
   // Fetch comments for a post by postId
   const fetchComments = async (id) => {

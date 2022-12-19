@@ -1,4 +1,4 @@
-import { PureComponent, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useContext } from 'react';
 import CommentContext from '../features/comments/commentContext';
@@ -21,6 +21,7 @@ const CommentForm = ({ postId }) => {
     });
     setCommentText('');
   };
+
 
   return (
     <form className='mb-6' onSubmit={onSubmit}>
