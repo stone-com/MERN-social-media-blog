@@ -9,6 +9,7 @@ const {
   deletePost,
   getAllPosts,
   getPostsForUser,
+  likeOrDislike,
 } = require('../controllers/postControllers');
 
 // Routes for /api/posts
@@ -16,6 +17,7 @@ const {
 router.get('/', getAllPosts); //Get all posts
 router.get('/user/:userId', protect, getPostsForUser); //Get all posts from specific user
 router.post('/', protect, addPost); //Create a new post
+router.put('/:id/like', likeOrDislike); // Like or dislike a post
 router.put('/:id', updatePost); //Update a post
 router.delete('/:id', protect, deletePost); //Delete a post
 
