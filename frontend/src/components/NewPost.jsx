@@ -46,7 +46,6 @@ const NewPost = ({ setShowPostForm }) => {
     }
 
     setFormData({ title: '', body: '' });
-   
   };
 
   return (
