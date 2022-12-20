@@ -47,11 +47,27 @@ const deletePost = async (postId, token) => {
   return response.data;
 };
 
+// Like or Dislike a Post
+const likeOrDislikePost = async (data, token) => {
+  const config = {
+    headers: {
+      Authorization: 'Bearer ' + token,
+    },
+  };
+  const response = await axios.put(
+    API_URL + data.postId + '/like',
+    { id: data.userId },
+    config
+  );
+  return response.data;
+};
+
 const postService = {
   createPost,
   getPosts,
   deletePost,
   editPost,
+  likeOrDislikePost,
 };
 
 export default postService;

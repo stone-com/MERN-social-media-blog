@@ -2,7 +2,11 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FaTrash, FaPen, FaSave } from 'react-icons/fa';
 import { GiCancel } from 'react-icons/gi';
-import { deletePost, editPost } from '../features/posts/postSlice';
+import {
+  deletePost,
+  editPost,
+  likeOrDislike,
+} from '../features/posts/postSlice';
 import { CommentDisplay } from '../components/CommentDisplay';
 import { CommentProvider } from '../features/comments/commentContext';
 import { Link } from 'react-router-dom';
@@ -15,7 +19,7 @@ const Post = ({
   id,
   ownPost,
   authorId,
-  commentIds,
+  likes,
 }) => {
   const [isEditable, setIsEditable] = useState(false);
   const [showComments, setShowComments] = useState(false);
@@ -51,6 +55,8 @@ const Post = ({
     dispatch(editPost(formData));
     setIsEditable(false);
   };
+
+  console.log(likes);
 
   return (
     <div className='px-5 py-4 my-5 bg-green-200 border-4 border-green-600 shadow-xl outline-none rounded-3xl'>
@@ -102,7 +108,12 @@ const Post = ({
       )}
       <div className='flex items-center justify-between mt-5'>
         <div>
-          <div className='flex '>
+          <div
+            className='flex'
+            onClick={() =>
+              dispatch(likeOrDislike({ postId: id, userId: user._id }))
+            }
+          >
             {/* Like Icon can go here */}
             <span className='ml-1 font-light text-gray-500 '>8 Likes</span>
           </div>

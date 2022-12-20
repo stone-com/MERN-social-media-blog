@@ -33,7 +33,6 @@ const EditProfile = () => {
     editUser();
     navigate(`/profile/${user._id}`);
   };
-
   return (
     <div className='flex justify-center h-screen bg-green-200 space-around align-center'>
       <div className='w-full mt-3 10 sm:w-3/6 sm:mt-10'>

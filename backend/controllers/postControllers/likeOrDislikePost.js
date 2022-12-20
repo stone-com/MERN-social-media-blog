@@ -6,13 +6,13 @@ const likeOrDislike = asyncHandler(async (req, res) => {
     const post = await Post.findById(req.params.id);
     if (!post.likes.includes(req.body.id)) {
       await post.updateOne({ $push: { likes: req.body.id } });
-      res.status(200).json('post has been liked');
+      res.status(200).json(post);
     } else {
       await post.updateOne({ $pull: { likes: req.body.id } });
-      res.status(200).json('post has been disliked');
+      res.status(200).json(post);
     }
   } catch (err) {
-    handleError(500, err);
+    console.log(err);
   }
 });
 
