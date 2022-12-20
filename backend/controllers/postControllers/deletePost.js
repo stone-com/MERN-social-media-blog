@@ -1,5 +1,6 @@
 const asyncHandler = require('express-async-handler');
 const Post = require('../../models/Post');
+const Comment = require('../../models/Comment');
 
 const deleteUser = asyncHandler(async (req, res) => {
   // Check to make sure post exists to delete
@@ -8,6 +9,9 @@ const deleteUser = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error('Post not found');
   }
+
+  // Delete all comments for the post
+  const comments = await Comment.deleteMany({ post: req.params.id });
 
   const deletedPost = await Post.findByIdAndDelete(req.params.id);
 
