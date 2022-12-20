@@ -175,7 +175,7 @@ const Profile = () => {
           {currentProfile?.posts &&
             currentProfile.posts
               .map((post) => (
-                <div key={post._id} className='m-1 w-100'>
+                <div key={post._id} className='m-1 w-100' >
                   <Post
                     ownPost={user._id === currentProfile._id}
                     title={post.title}
@@ -184,6 +184,7 @@ const Profile = () => {
                     createdAt={post.createdAt}
                     commentIds={post.comments}
                     id={post._id}
+                    likes={post.likes}
                   />
                 </div>
               ))

@@ -59,6 +59,7 @@ const likeOrDislikePost = async (data, token) => {
     { id: data.userId },
     config
   );
+  console.log(response.data);
   return response.data;
 };
 

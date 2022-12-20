@@ -162,7 +162,7 @@ const postSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
       })
-      // Edit a post
+      // Like or Dislike a post.
       .addCase(likeOrDislike.pending, (state) => {
         state.isLoading = true;
       })

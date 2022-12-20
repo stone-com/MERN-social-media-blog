@@ -56,7 +56,7 @@ const Post = ({
     setIsEditable(false);
   };
 
-  console.log(likes);
+
 
   return (
     <div className='px-5 py-4 my-5 bg-green-200 border-4 border-green-600 shadow-xl outline-none rounded-3xl'>
@@ -115,7 +115,7 @@ const Post = ({
             }
           >
             {/* Like Icon can go here */}
-            <span className='ml-1 font-light text-gray-500 '>8 Likes</span>
+            <span className='ml-1 font-light text-gray-500 '>{likes.length} Likes</span>
           </div>
           <div
             className='ml-1 font-light text-gray-500 hover:cursor-pointer'
