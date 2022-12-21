@@ -38,6 +38,7 @@ const Following = () => {
                 createdAt={post.createdAt}
                 commentIds={post.comments}
                 id={post._id}
+                likes={post.likes}
               />
             </div>
           ))}

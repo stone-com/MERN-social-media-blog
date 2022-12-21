@@ -18,7 +18,7 @@ const likeOrDislike = asyncHandler(async (req, res) => {
         { $pull: { likes: req.body.id } },
         { new: true }
       );
-      await post.populate('user');
+      await updatedPost.populate('user');
       res.status(200).json(updatedPost);
     }
   } catch (err) {
