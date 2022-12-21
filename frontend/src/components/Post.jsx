@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { FaTrash, FaPen, FaSave } from 'react-icons/fa';
+import {
+  FaTrash,
+  FaPen,
+  FaSave,
+} from 'react-icons/fa';
 import { GiCancel } from 'react-icons/gi';
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import {
   deletePost,
   editPost,
@@ -56,8 +61,6 @@ const Post = ({
     setIsEditable(false);
   };
 
-
-
   return (
     <div className='px-5 py-4 my-5 bg-green-200 border-4 border-green-600 shadow-xl outline-none rounded-3xl'>
       <div className='grid grid-cols-3'>
@@ -108,17 +111,24 @@ const Post = ({
       )}
       <div className='flex items-center justify-between mt-5'>
         <div>
-          <div
-            className='flex'
+          <button
+            className='flex mb-1'
             onClick={() =>
               dispatch(likeOrDislike({ postId: id, userId: user._id }))
             }
           >
             {/* Like Icon can go here */}
-            <span className='ml-1 font-light text-gray-500 '>{likes.length} Likes</span>
-          </div>
+            <span className='flex ml-1 '>
+              {likes.includes(user._id) ? (
+                <AiFillHeart size={'1.5em'} />
+              ) : (
+                <AiOutlineHeart size={'1.5em'} />
+              )}
+              {likes.length} {likes.length === 1 ? ' Like' : ' Likes'}
+            </span>
+          </button>
           <div
-            className='ml-1 font-light text-gray-500 hover:cursor-pointer'
+            className='ml-1 hover:cursor-pointer'
             onClick={() => setShowComments(!showComments)}
           >
             {`${showComments ? 'Hide' : 'Show'} comments`}
