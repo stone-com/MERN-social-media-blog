@@ -119,7 +119,7 @@ const Post = ({
           >
             {/* Like Icon can go here */}
             <span className='flex ml-1 '>
-              {likes.includes(user._id) ? (
+              {likes.includes(user?._id) ? (
                 <AiFillHeart size={'1.5em'} />
               ) : (
                 <AiOutlineHeart size={'1.5em'} />

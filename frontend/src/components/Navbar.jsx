@@ -17,9 +17,9 @@ export default function NavBar() {
   }, [location]);
 
   const onLogout = () => {
+    navigate('/login');
     dispatch(logout());
     dispatch(reset());
-    navigate('/login');
   };
 
   return (
@@ -76,28 +76,30 @@ export default function NavBar() {
             }`}
           >
             <ul className='items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0'>
-              <li
-                className={`text-gray-600 hover:text-blue-600 ${
-                  activeLink === '/explore' ? 'active' : ''
-                }`}
-              >
-                <Link to='/explore'>Explore</Link>
-              </li>
-              <li
-                className={`text-gray-600 hover:text-blue-600 ${
-                  activeLink === '/following' ? 'active' : ''
-                }`}
-              >
-                <Link to='/following'>Following</Link>
-              </li>
               {user !== null && (
-                <li
-                  className={`text-gray-600 hover:text-blue-600 ${
-                    activeLink === `/profile/` ? 'active' : ''
-                  }`}
-                >
-                  <Link to={'/profile/' + user?._id}>Profile</Link>
-                </li>
+                <>
+                  <li
+                    className={`text-gray-600 hover:text-blue-600 ${
+                      activeLink === '/explore' ? 'active' : ''
+                    }`}
+                  >
+                    <Link to='/explore'>Explore</Link>
+                  </li>
+                  <li
+                    className={`text-gray-600 hover:text-blue-600 ${
+                      activeLink === '/following' ? 'active' : ''
+                    }`}
+                  >
+                    <Link to='/following'>Following</Link>
+                  </li>
+                  <li
+                    className={`text-gray-600 hover:text-blue-600 ${
+                      activeLink === `/profile/` ? 'active' : ''
+                    }`}
+                  >
+                    <Link to={'/profile/' + user?._id}>Profile</Link>
+                  </li>
+                </>
               )}
               <li className={`text-gray-600 hover:text-blue-600`}>
                 <button onClick={onLogout}>Log Out</button>
