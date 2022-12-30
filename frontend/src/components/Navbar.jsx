@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout, reset } from '../features/auth/authSlice';
+import cat from '../cat.png';
 
 export default function NavBar() {
   const [navbar, setNavbar] = useState(false);
@@ -14,6 +15,7 @@ export default function NavBar() {
 
   useEffect(() => {
     setActiveLink(location.pathname);
+    setNavbar(false);
   }, [location]);
 
   const onLogout = () => {
@@ -23,12 +25,12 @@ export default function NavBar() {
   };
 
   return (
-    <nav className='w-full bg-white shadow'>
+    <nav className='w-full bg-green-400 border-green-600 shadow'>
       <div className='justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8'>
         <div>
           <div className='flex items-center justify-between py-3 md:py-5 md:block'>
             <Link to='/explore'>
-              <h2 className='text-2xl font-bold'>LOGO</h2>
+              <img src={cat} alt='' style={{ width: 50, height: 50 }} />
             </Link>
 
             <div className='md:hidden'>
@@ -79,21 +81,21 @@ export default function NavBar() {
               {user !== null && (
                 <>
                   <li
-                    className={`text-gray-600 hover:text-blue-600 ${
+                    className={`text-black hover:text-blue-600 ${
                       activeLink === '/explore' ? 'active' : ''
                     }`}
                   >
                     <Link to='/explore'>Explore</Link>
                   </li>
                   <li
-                    className={`text-gray-600 hover:text-blue-600 ${
+                    className={`text-black hover:text-blue-600 ${
                       activeLink === '/following' ? 'active' : ''
                     }`}
                   >
                     <Link to='/following'>Following</Link>
                   </li>
                   <li
-                    className={`text-gray-600 hover:text-blue-600 ${
+                    className={`text-black hover:text-blue-600 ${
                       activeLink === `/profile/` ? 'active' : ''
                     }`}
                   >
@@ -101,7 +103,7 @@ export default function NavBar() {
                   </li>
                 </>
               )}
-              <li className={`text-gray-600 hover:text-blue-600`}>
+              <li className={`text-black hover:text-blue-600`}>
                 <button onClick={onLogout}>Log Out</button>
               </li>
             </ul>

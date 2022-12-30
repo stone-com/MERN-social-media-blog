@@ -1,10 +1,6 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  FaTrash,
-  FaPen,
-  FaSave,
-} from 'react-icons/fa';
+import { FaTrash, FaPen, FaSave } from 'react-icons/fa';
 import { GiCancel } from 'react-icons/gi';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import {
@@ -63,8 +59,8 @@ const Post = ({
 
   return (
     <div className='px-5 py-4 my-5 bg-green-200 border-4 border-green-600 shadow-xl outline-none rounded-3xl'>
-      <div className='grid grid-cols-3'>
-        <div className='flex col-span-1 mb-4 mr-3'>
+      <div className='grid sm:grid-cols-3'>
+        <div className='flex items-center justify-center col-span-3 mb-4 mr-3 place-items-center sm:col-span-1 '>
           <img
             className='w-12 h-12 rounded-full'
             src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
@@ -81,14 +77,14 @@ const Post = ({
         </div>
         {/* Render either the post title or an input field depending on isEditable State */}
         {!isEditable ? (
-          <p className='flex justify-start col-span-2 px-6 text-2xl text-black'>
+          <p className='flex col-span-3 mb-2 text-2xl text-black sm:justify-start sm:px-6 sm:col-span-2 sm:mb-0'>
             {title}
           </p>
         ) : (
           <input
             type='text'
             name='editTitle'
-            class='bg-green-400 border border-white text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 '
+            class='bg-green-400 border border-white text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block col-span-3 sm:col-span-2 p-2.5 '
             placeholder={title}
             required
             value={editTitle}
@@ -98,7 +94,7 @@ const Post = ({
       </div>
       {/* Render either the post body or an input field depending on isEditable State */}
       {!isEditable ? (
-        <p className='leading-snug text-gray-800 md:leading-normal'>{body}</p>
+        <p className='leading-snug text-black md:leading-normal'>{body}</p>
       ) : (
         <input
           type='text'
